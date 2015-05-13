@@ -1,4 +1,4 @@
-package jbprototipo;
+package model;
 
 public class Denuncia {
 	private DateTime fecha_denuncia;

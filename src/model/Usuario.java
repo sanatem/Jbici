@@ -1,4 +1,4 @@
-package jbprototipo;
+package model;
 
 import java.util.Date;
 
