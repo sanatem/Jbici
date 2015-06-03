@@ -2,15 +2,42 @@ package model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="alquiler")
 public class Alquiler {
-	private Cliente cliente;
-	private Denuncia denuncia;
 	private Timestamp fecha_inicio;
 	private Timestamp fecha_fin;
 	private Timestamp fecha_devuelve;
+	
+	@Id@GeneratedValue
+	@Column(name="id_alquiler")
+	private Long idAlquiler;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
+	
+	@OneToOne(optional=true) //Denuncia opcional
+	private Denuncia denuncia;
+	
+	@OneToOne(optional=false)
 	private Estacion estacion_retira;
+	
+	@OneToOne(optional=true) //Opcional porque no sabemos cuando la devuelve
+	
 	private Estacion estacion_devuelve;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="bicicleta_id")
 	private Bicicleta bicicleta;
+	
+	//Constructores
+	
+	public Alquiler(){
+		
+	}
 	
 	public Alquiler(Cliente cliente, Timestamp fecha_inicio, Timestamp fecha_fin,
 			Estacion estacion_retira, Bicicleta bicicleta) {
@@ -25,6 +52,8 @@ public class Alquiler {
 		this.denuncia = null;
 	}
 
+	//Getter y setter 
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -88,10 +117,15 @@ public class Alquiler {
 	public void setBicicleta(Bicicleta bicicleta) {
 		this.bicicleta = bicicleta;
 	}
+
+	public Long getAlquilerId() {
+		return idAlquiler;
+	}
+
+	public void setAlquilerId(Long idAlquiler) {
+		this.idAlquiler = idAlquiler;
+	}
 	
-	
-	
-	
-	
+
 
 }

@@ -13,6 +13,7 @@ public class GenericDAOhiberJPA<T> implements GenericDAO<T> {
 
 		private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("nombreDeLaUnidadDePersistencia");
 		
+		
 		@Override
 		public T actualizar(T entity) {
 			// TODO Auto-generated method stub

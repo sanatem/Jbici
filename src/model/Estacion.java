@@ -1,16 +1,39 @@
 package model;
 
 import java.util.LinkedList;
+import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="estacion")
 public class Estacion {
+	
+
+	@Id@GeneratedValue
+	@Column(name="id")
+	private Long idEstacion;
+	
 	private String nombre;
 	private int estacionamientosLibres;
-	private LinkedList<Bicicleta> bicicletas;
+	
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="estacion_id")
+	private List<Bicicleta> bicicletas;
+	
+	@OneToOne(optional = false)
 	private Ubicacion ubicacionEstacion;
+	
+	@OneToOne(optional = false)
 	private EstadoEstacion estadoEstacion;
 	
 	
 	//Constructor
+	
+	public Estacion(){
+		
+	}
+	
 	public Estacion(String nombre, int estacionamientosLibres,
 			Ubicacion ubicacionEstacion, EstadoEstacion estadoEstacion) {
 		super();
@@ -34,10 +57,10 @@ public class Estacion {
 	public void setEstacionamientosLibres(int estacionamientosLibres) {
 		this.estacionamientosLibres = estacionamientosLibres;
 	}
-	public LinkedList<Bicicleta> getBicicletas() {
+	public List<Bicicleta> getBicicletas() {
 		return bicicletas;
 	}
-	public void setBicicletas(LinkedList<Bicicleta> bicicletas) {
+	public void setBicicletas(List<Bicicleta> bicicletas) {
 		this.bicicletas = bicicletas;
 	}
 	public Ubicacion getUbicacionEstacion() {

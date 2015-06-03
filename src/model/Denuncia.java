@@ -2,9 +2,22 @@ package model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.*;
+@Entity
+@Table(name="denuncia")
 public class Denuncia {
+	
 	private Timestamp fecha_denuncia;
+	
 	private String descripcion;
+	
+	@Id@GeneratedValue
+	@Column(name="id")
+	private Long idDenuncia;
+	
+	public Denuncia(){
+		
+	}
 	
 	public Denuncia(Timestamp fecha_denuncia, String descripcion) {
 		super();

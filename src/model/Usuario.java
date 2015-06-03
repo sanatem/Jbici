@@ -1,14 +1,19 @@
 package model;
 
 import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipo_user")
 @Table(name="usuario")
-public class Usuario {
+public abstract class Usuario {
 	
 	@Id@GeneratedValue
+	@Column(name="id_usuario")
 	private Long idUsuario;
+	
 	private String nombre;
 	private String apellido;
 	private int dni;
@@ -16,6 +21,7 @@ public class Usuario {
 	private char sexo;
 	private Date fechaNacimiento;
 	private String email;
+	private String password;
 	
 	
 	public Usuario(){
@@ -95,6 +101,14 @@ public class Usuario {
 
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+
+	private String getPassword() {
+		return password;
+	}
+
+	private void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

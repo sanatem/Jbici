@@ -1,5 +1,7 @@
 package util;
 
+import interfacesDAO.FactoryDAO;
+
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -7,20 +9,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import model.Cliente;
 import model.Usuario;
 
 
 public class Test {
 
 	public static void main(String[] args) {
-	
+		
+		FactoryDAO fac = new FactoryDAO();
+		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jyaa");
 		EntityManager em = emf.createEntityManager();
 		
 		EntityTransaction etx = em.getTransaction();
 		etx.begin(); //Abre transaccion
 			//Creo un mensaje y lo persisto
-			Usuario us = new Usuario();
+			Cliente us = new Cliente();
 			us.setApellido("malcorra");
 			us.setDni(123456);
 			us.setDomicilio("por alla");

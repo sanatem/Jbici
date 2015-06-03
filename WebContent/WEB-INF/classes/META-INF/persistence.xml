@@ -9,8 +9,19 @@
 
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
 	<!-- Clases de mapeo -->
+	
+	<class>model.Administrador</class>
+	<class>model.Alquiler</class>
+	<class>model.Bicicleta</class>
+	<class>model.Cliente</class>
+	<class>model.Denuncia</class>
+	<class>model.Estacion</class>
+	<class>model.EstadoBicicleta</class>
+	<class>model.EstadoEstacion</class>
+	<class>model.HistorialBicicleta</class>
+	<class>model.Ubicacion</class>
 	<class>model.Usuario</class>
-
+	
 	<properties>
 		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 		<property name="hibernate.connection.username" value="root" />

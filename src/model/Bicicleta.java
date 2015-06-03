@@ -2,11 +2,9 @@ package model;
 
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="bicicleta")
@@ -14,50 +12,62 @@ import javax.persistence.Table;
 public class Bicicleta {
 	
 	@Id@GeneratedValue
-	private Long bicicletaId;
-	private Date fechaIngreso;
-	private EstadoBicicleta estadoActual;
+	@Column(name="id_bicicleta")
+	private Long idBicicleta;
 	
-	public Long getBicicletaId() {
-		return bicicletaId;
-	}
+	private Date fecha_ingreso;
+	
+	@OneToOne(optional = false) //Uno a Uno Unidireccional
+	private EstadoBicicleta estadoActual;
 
-
+	@OneToMany(mappedBy="bicicleta")
+	private List<Alquiler> alquileres;
+	
+	
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="bicicleta_id")	
+	private List<HistorialBicicleta> historialEstados;
+	
+	/**
+	 * Constructores
+	 */
 	public Bicicleta() {
 		
 	}
 
-
-	public void setBicicletaId(Long bicicletaId) {
-		this.bicicletaId = bicicletaId;
-	}
-
-	private LinkedList<Alquiler> alquileres;
 	
-
 	public Bicicleta(Date fechaIngreso, EstadoBicicleta estadoActual) {
 		super();
-		this.fechaIngreso = fechaIngreso;
+		this.fecha_ingreso = fechaIngreso;
 		this.estadoActual = estadoActual;
 		this.alquileres = new LinkedList<Alquiler>();
+		this.historialEstados = new LinkedList<HistorialBicicleta>();
 	}
 	
 
 	//Getter & setter
+	public Long getIdBicicleta() {
+		return idBicicleta;
+	}
+
+	public void setIdBicicleta(Long bicicletaId) {
+		this.idBicicleta = bicicletaId;
+	}
+	
 	public Date getFechaIngreso() {
-		return fechaIngreso;
+		return fecha_ingreso;
 	}
 
 	public void setFechaIngreso(Date fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
+		this.fecha_ingreso = fechaIngreso;
 	}
 
 
-	public LinkedList<Alquiler> getAlquileres() {
+	public List<Alquiler> getAlquileres() {
 		return alquileres;
 	}
 
-	public void setAlquileres(LinkedList<Alquiler> alquileres) {
+	private void setAlquileres(List<Alquiler> alquileres) {
 		this.alquileres = alquileres;
 	}
 
@@ -68,6 +78,19 @@ public class Bicicleta {
 	public void setEstadoActual(EstadoBicicleta estadoActual) {
 		this.estadoActual = estadoActual;
 	}
+
+
+	private List<HistorialBicicleta> getHistorialEstados() {
+		return historialEstados;
+	}
+
+
+	private void setHistorialEstados(List<HistorialBicicleta> historial_estados) {
+		this.historialEstados = historial_estados;
+	}
+
+
+	
 	
 	
 	

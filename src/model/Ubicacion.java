@@ -1,12 +1,22 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="ubicacion")
 public class Ubicacion {
 
+	@Id@GeneratedValue
+	@Column(name="id")
 	private int latitud;
 	private int longitud;
 	private String direccionPostal;
 	
 	//Constructor
+	public Ubicacion() {
+		
+	}
+	
 	public Ubicacion(int latitud, int longitud, String direccionPostal) {
 		super();
 		this.latitud = latitud;

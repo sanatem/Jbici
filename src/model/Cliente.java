@@ -2,10 +2,22 @@ package model;
 
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("cliente")
 public class Cliente extends Usuario {
+	
 	private Boolean estado;
-	private LinkedList<Alquiler> alquileres;
+
+	@OneToMany(mappedBy="cliente",cascade=CascadeType.ALL)
+	private List<Alquiler> alquileres;
+	
+	public Cliente(){
+		
+	}
 	
 	public Cliente(String nombre, String apellido, int dni, String domicilio,
 			char sexo, Date fecha_nacimiento, String email) {
@@ -36,13 +48,15 @@ public class Cliente extends Usuario {
 		this.estado = estado;
 	}
 
-	public LinkedList<Alquiler> getAlquileres() {
+	public List<Alquiler> getAlquileres() {
 		return alquileres;
 	}
 
-	public void setAlquileres(LinkedList<Alquiler> alquileres) {
+	public void setAlquileres(List<Alquiler> alquileres) {
 		this.alquileres = alquileres;
 	}
+
+
 	
 	
 }
