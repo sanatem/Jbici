@@ -1,16 +1,18 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class Alquiler {
 	private Cliente cliente;
 	private Denuncia denuncia;
-	private DateTime fecha_inicio;
-	private DateTime fecha_fin;
-	private DateTime fecha_devuelve;
+	private Timestamp fecha_inicio;
+	private Timestamp fecha_fin;
+	private Timestamp fecha_devuelve;
 	private Estacion estacion_retira;
 	private Estacion estacion_devuelve;
 	private Bicicleta bicicleta;
 	
-	public Alquiler(Cliente cliente, DateTime fecha_inicio, DateTime fecha_fin,
+	public Alquiler(Cliente cliente, Timestamp fecha_inicio, Timestamp fecha_fin,
 			Estacion estacion_retira, Bicicleta bicicleta) {
 		super();
 		this.cliente = cliente;
@@ -39,27 +41,27 @@ public class Alquiler {
 		this.denuncia = denuncia;
 	}
 
-	public DateTime getFecha_inicio() {
+	public Timestamp getFecha_inicio() {
 		return fecha_inicio;
 	}
 
-	public void setFecha_inicio(DateTime fecha_inicio) {
+	public void setFecha_inicio(Timestamp fecha_inicio) {
 		this.fecha_inicio = fecha_inicio;
 	}
 
-	public DateTime getFecha_fin() {
+	public Timestamp getFecha_fin() {
 		return fecha_fin;
 	}
 
-	public void setFecha_fin(DateTime fecha_fin) {
+	public void setFecha_fin(Timestamp fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
 
-	public DateTime getFecha_devuelve() {
+	public Timestamp getFecha_devuelve() {
 		return fecha_devuelve;
 	}
 
-	public void setFecha_devuelve(DateTime fecha_devuelve) {
+	public void setFecha_devuelve(Timestamp fecha_devuelve) {
 		this.fecha_devuelve = fecha_devuelve;
 	}
 

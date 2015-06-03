@@ -1,8 +1,14 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.*;
 
-public abstract class Usuario {
+@Entity
+@Table(name="usuario")
+public class Usuario {
+	
+	@Id@GeneratedValue
+	private Long idUsuario;
 	private String nombre;
 	private String apellido;
 	private int dni;
@@ -10,7 +16,12 @@ public abstract class Usuario {
 	private char sexo;
 	private Date fechaNacimiento;
 	private String email;
-
+	
+	
+	public Usuario(){
+		
+	}
+	
 	public Usuario(String nombre, String apellido, int dni, String domicilio,
 			char sexo, Date fecha_nacimiento, String email) {
 		this.nombre = nombre;
@@ -76,6 +87,14 @@ public abstract class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 	
 	

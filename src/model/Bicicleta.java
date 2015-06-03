@@ -3,10 +3,35 @@ package model;
 import java.util.Date;
 import java.util.LinkedList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="bicicleta")
+
 public class Bicicleta {
 	
+	@Id@GeneratedValue
+	private Long bicicletaId;
 	private Date fechaIngreso;
 	private EstadoBicicleta estadoActual;
+	
+	public Long getBicicletaId() {
+		return bicicletaId;
+	}
+
+
+	public Bicicleta() {
+		
+	}
+
+
+	public void setBicicletaId(Long bicicletaId) {
+		this.bicicletaId = bicicletaId;
+	}
+
 	private LinkedList<Alquiler> alquileres;
 	
 
@@ -16,6 +41,7 @@ public class Bicicleta {
 		this.estadoActual = estadoActual;
 		this.alquileres = new LinkedList<Alquiler>();
 	}
+	
 
 	//Getter & setter
 	public Date getFechaIngreso() {

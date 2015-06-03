@@ -1,20 +1,22 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class Denuncia {
-	private DateTime fecha_denuncia;
+	private Timestamp fecha_denuncia;
 	private String descripcion;
 	
-	public Denuncia(DateTime fecha_denuncia, String descripcion) {
+	public Denuncia(Timestamp fecha_denuncia, String descripcion) {
 		super();
 		this.fecha_denuncia = fecha_denuncia;
 		this.descripcion = descripcion;
 	}
 
-	public DateTime getFecha_denuncia() {
+	public Timestamp getFecha_denuncia() {
 		return fecha_denuncia;
 	}
 
-	public void setFecha_denuncia(DateTime fecha_denuncia) {
+	public void setFecha_denuncia(Timestamp fecha_denuncia) {
 		this.fecha_denuncia = fecha_denuncia;
 	}
 
