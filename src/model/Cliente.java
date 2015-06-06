@@ -20,8 +20,8 @@ public class Cliente extends Usuario {
 	}
 	
 	public Cliente(String nombre, String apellido, int dni, String domicilio,
-			char sexo, Date fecha_nacimiento, String email) {
-		super(nombre, apellido, dni, domicilio, sexo, fecha_nacimiento, email);
+			char sexo, Date fecha_nacimiento, String email,String password) {
+		super(nombre, apellido, dni, domicilio, sexo, fecha_nacimiento, email,password);
 		this.estado = true;
 		this.alquileres = new LinkedList<Alquiler>();
 	}

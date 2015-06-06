@@ -1,6 +1,6 @@
 package util;
 
-import interfacesDAO.FactoryDAO;
+import interfacesDAO.*;
 
 import java.util.Date;
 
@@ -9,41 +9,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import model.Cliente;
-import model.Usuario;
+import model.*;
 
 
 public class Test {
 
 	public static void main(String[] args) {
+		FactoryDAO factory = new FactoryDAO();
 		
-		FactoryDAO fac = new FactoryDAO();
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jyaa");
-		EntityManager em = emf.createEntityManager();
-		
-		EntityTransaction etx = em.getTransaction();
-		etx.begin(); //Abre transaccion
-			//Creo un mensaje y lo persisto
-			Cliente us = new Cliente();
-			us.setApellido("malcorra");
-			us.setDni(123456);
-			us.setDomicilio("por alla");
-			us.setEmail("nico@sarasa.com");
-			us.setFechaNacimiento(new Date());
-			us.setNombre("nico");
-			us.setSexo('T');
-			em.persist(us); //Guarda DB
-			
-		etx.commit(); //Cierra transaccion
-		em.close();
-		//Obtengo todos los mensajes
-		/*
-		List<Mensaje> mensajes=(List<Mensaje>)(em.createQuery("from jyaa.Mensaje m order by
-		m.texto asc")).getResultList();
-		for (Mensaje men:mensajes) {System.out.println("Mensaje : " +men.getTexto());}
-		etx.commit();
-		em.close();
+		/**
+		 * Obtengo mis Daos
 		 */
+		AdministradorDAO admindao = factory.getAdministradorDAO();
+		
+		
+		/**
+		 * Test de Administrador
+		 */
+		System.out.println("============================");
+		System.out.println("Test Administrador");
+		System.out.println("--Test persistencia");
+		Administrador admin = new Administrador("Benedict", "Cumberbatch" , 37456987, "Baker st.",'M',new Date(1989,05,03),"sherlock@holmes.com","1234");
+		admindao.persistir(admin);
+		//Comprobamos si persistio
+		System.out.println("Administrador persistio con id="+admin.getIdUsuario());
+		
+		
 	}
 }

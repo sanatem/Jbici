@@ -29,7 +29,7 @@ public abstract class Usuario {
 	}
 	
 	public Usuario(String nombre, String apellido, int dni, String domicilio,
-			char sexo, Date fecha_nacimiento, String email) {
+			char sexo, Date fecha_nacimiento, String email,String password) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -37,6 +37,7 @@ public abstract class Usuario {
 		this.sexo = sexo;
 		this.fechaNacimiento = fecha_nacimiento;
 		this.email = email;
+		this.password=password;
 	}
 
 	public String getNombre() {
