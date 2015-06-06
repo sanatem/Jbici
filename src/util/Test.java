@@ -5,6 +5,7 @@ import interfacesDAO.*;
 import java.util.Date;
 
 import model.Administrador;
+import model.HistorialBicicleta;
 
 
 public class Test {
@@ -23,6 +24,7 @@ public class Test {
 		EstacionDAO estaciondao = factory.getEstacionDAO();
 		EstadoBicicletaDAO estadobicidao = factory.getEstadoBicicleta();
 		EstadoEstacionDAO estadoestaciondao = factory.getEstadoEstacion();
+		HistorialBicicletaDAO historialdao = factory.getHistorialBicicleta();
 		UbicacionDAO ubicaciondao = factory.getUbicacionDAO();
 
 		/**
@@ -39,7 +41,7 @@ public class Test {
 		System.out.println("--Test recuperar");
 		Administrador admin_recuperado = admindao.recuperar(id);
 		System.out.println("Admin recuperado:"+admin_recuperado.getNombre());
-		System.out.println("--Test");
+		System.out.println("--Test actualizar");
 		
 
 		

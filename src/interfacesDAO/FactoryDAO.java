@@ -43,6 +43,10 @@ public class FactoryDAO {
 	public EstadoEstacionDAO getEstadoEstacion() {
 		return new EstadoEstacionDAOhiberJPA();
 	}
+
+	public HistorialBicicletaDAO getHistorialBicicleta() {
+		return new HistorialBicicletaDAOhiberJPA();
+	}
 	
 	
 }
