@@ -24,6 +24,25 @@ public class FactoryDAO {
 		return new EstadoBicicletaDAOhiberJPA();
 	}
 	
+	public ClienteDAO getClienteDAO(){
+		return new ClienteDAOhiberJPA();
+	}
+
+	public DenunciaDAO getDenunciaDAO() {
+		return new DenunciaDAOhiberJPA();
+	}
+
+	public EstacionDAO getEstacionDAO() {
+		return new EstacionDAOhiberJPA();
+	}
+
+	public UbicacionDAO getUbicacionDAO() {
+		return new UbicacionDAOhiberJPA();
+	}
+
+	public EstadoEstacionDAO getEstadoEstacion() {
+		return new EstadoEstacionDAOhiberJPA();
+	}
 	
 	
 }

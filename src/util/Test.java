@@ -1,7 +1,6 @@
 package util;
 
-import interfacesDAO.AdministradorDAO;
-import interfacesDAO.FactoryDAO;
+import interfacesDAO.*;
 
 import java.util.Date;
 
