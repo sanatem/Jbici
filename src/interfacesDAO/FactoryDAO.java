@@ -19,6 +19,10 @@ public class FactoryDAO {
 	public static BicicletaDAO getBicicletaDAO(){
 		return new BicicletaDAOhiberJPA();
 	}
+
+	public EstadoBicicletaDAO getEstadoBicicleta() {
+		return new EstadoBicicletaDAOhiberJPA();
+	}
 	
 	
 	
