@@ -8,6 +8,7 @@ public class Ubicacion {
 
 	@Id@GeneratedValue
 	@Column(name="id")
+	private Long idUbicacion;
 	private int latitud;
 	private int longitud;
 	private String direccionPostal;
@@ -43,6 +44,12 @@ public class Ubicacion {
 	public void setDireccionPostal(String direccionPostal) {
 		this.direccionPostal = direccionPostal;
 	}
-	
+	public Long getIdUbicacion() {
+		return idUbicacion;
+	}
+
+	public void setIdUbicacion(Long idUbicacion) {
+		this.idUbicacion = idUbicacion;
+	}
 	
 }

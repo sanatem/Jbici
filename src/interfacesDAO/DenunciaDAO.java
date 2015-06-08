@@ -2,6 +2,7 @@ package interfacesDAO;
 
 import java.io.Serializable;
 
+import model.Alquiler;
 import model.Denuncia;
 
 public interface DenunciaDAO extends GenericDAO<Denuncia>{
@@ -17,4 +18,5 @@ public interface DenunciaDAO extends GenericDAO<Denuncia>{
 	public Denuncia persistir(Denuncia denuncia);
 	@Override
 	public Denuncia recuperar(Serializable id);
+	
 }

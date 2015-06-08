@@ -12,7 +12,7 @@ public class Cliente extends Usuario {
 	
 	private Boolean estado;
 
-	@OneToMany(mappedBy="cliente",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="cliente",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<Alquiler> alquileres;
 	
 	public Cliente(){
@@ -56,7 +56,12 @@ public class Cliente extends Usuario {
 		this.alquileres = alquileres;
 	}
 
-
+	public void agregarAlquiler(Alquiler unAlquiler) {
+		this.alquileres.add(unAlquiler);
+	}
 	
+	public void removerAlquiler(Alquiler unAlquiler) {
+		this.alquileres.remove(unAlquiler);
+	}
 	
 }

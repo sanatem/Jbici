@@ -18,7 +18,7 @@ import interfacesDAO.GenericDAO;
 
 public class GenericDAOhiberJPA<T> implements GenericDAO<T> {
 
-		private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("jyaa");
+		protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("jyaa");
 		private Class<T> persistentClass;
 		
 		/**

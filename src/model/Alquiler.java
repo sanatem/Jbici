@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="alquiler")
 public class Alquiler {
+	
 	private Timestamp fecha_inicio;
 	private Timestamp fecha_fin;
 	private Timestamp fecha_devuelve;
@@ -19,7 +20,7 @@ public class Alquiler {
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
-	@OneToOne(optional=true) //Denuncia opcional
+	@OneToOne(optional=true,cascade = CascadeType.ALL, orphanRemoval = true) //Denuncia opcional
 	private Denuncia denuncia;
 	
 	@OneToOne(optional=false)
@@ -126,6 +127,9 @@ public class Alquiler {
 		this.idAlquiler = idAlquiler;
 	}
 	
+	public void quitarDenuncia(){
+		this.denuncia = null;
+	}
 
 
 }

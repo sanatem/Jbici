@@ -15,6 +15,7 @@ public class Denuncia {
 	@Column(name="id")
 	private Long idDenuncia;
 	
+
 	public Denuncia(){
 		
 	}
@@ -41,7 +42,13 @@ public class Denuncia {
 		this.descripcion = descripcion;
 	}
 	
-	
+	public Long getIdDenuncia() {
+		return idDenuncia;
+	}
+
+	public void setIdDenuncia(Long idDenuncia) {
+		this.idDenuncia = idDenuncia;
+	}
 	
 	
 }
