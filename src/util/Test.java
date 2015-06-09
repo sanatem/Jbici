@@ -217,6 +217,190 @@ public class Test {
 		if(ubicaciondao.recuperar(id) == null){
 			System.out.println(" - Entidad Ubicacion ya no existe!");
 		}
+
+		
+        /**
+         * Test de EstadoBicicleta
+         */
+        System.out.println("=====================================");
+        System.out.println("Test EstadoBicleta");
+        System.out.println("--Test persistencia");
+        EstadoBicicleta estado_bici = new EstadoBicicleta("Apta para uso");
+        estadobicidao.persistir(estado_bici);
+        Long id_estadobici = estado_bici.getIdEstadoBicicleta();
+        System.out.println("EstadoBicicleta persistio con id="+id_estadobici);
+        System.out.println("--Test recuperar");
+        EstadoBicicleta estadobici_recuperado = estadobicidao.recuperar(id_estadobici);
+        if (estadobici_recuperado != null){
+                System.out.println(" - EstadoBicicleta recuperado con id="+id_estadobici);
+        }
+        estadobici_recuperado = estadobicidao.recuperar(new Long(99999)); //Esto no existe
+        if (estadobici_recuperado == null){
+                System.out.println(" - No existe EstadoBicicleta con id 999999");
+        }
+        System.out.println("--Test actualizar");
+        System.out.println("Antes de actualizar :" + estado_bici.getDescripcion()); 
+        estado_bici.setDescripcion("Denunciada"); //Actualizamos descripcion.
+        estado_bici= estadobicidao.actualizar(estado_bici);
+        System.out.println("Actualizado: " + estado_bici.getDescripcion());
+        System.out.println("--Test borrar");
+        estadobicidao.borrar(id_estadobici);
+       
+        if(estadobicidao.recuperar(id_estadobici) == null){
+                System.out.println("Entidad EstadoBicicleta ya no existe");
+        }
+        /**
+         * Test de EstadoEstacion
+         */
+        System.out.println("=====================================");
+        System.out.println("Test EstadoEstacion");
+        System.out.println("--Test persistencia");
+        EstadoEstacion estado_estacion = new EstadoEstacion("Operativa");
+        estadoestaciondao.persistir(estado_estacion);
+        Long id_estadoestacion = estado_estacion.getIdEstadoEstacion();
+        System.out.println("EstadoEstacion persistio con id="+id_estadoestacion);
+        System.out.println("--Test recuperar");
+        EstadoEstacion estadoestacion_recuperado = estadoestaciondao.recuperar(id_estadoestacion);
+        if (estadobici_recuperado != null){
+                System.out.println(" - EstadoEstacion recuperado con id="+id_estadoestacion);
+        }
+        estadoestacion_recuperado = estadoestaciondao.recuperar(new Long(99999)); //Esto no existe
+        if (estadoestacion_recuperado == null){
+                System.out.println(" - No existe EstadoEstacion con id 999999");
+        }
+        System.out.println("--Test actualizar");
+        System.out.println("Antes de actualizar :" + estado_estacion.getDescripcion()); 
+        estado_estacion.setDescripcion("En construccion"); //Actualizamos descripcion.
+        estado_estacion= estadoestaciondao.actualizar(estado_estacion);
+        System.out.println("Actualizado: " + estado_estacion.getDescripcion());
+        System.out.println("--Test borrar");
+        estadoestaciondao.borrar(id_estadoestacion);
+       
+        if(estadoestaciondao.recuperar(id_estadoestacion) == null){
+                System.out.println("Entidad EstadoEstacion ya no existe");
+        }
+       
+        /**
+         * Test de Bicicleta
+         */
+        System.out.println("=====================================");
+        System.out.println("Test Bicicleta");
+        System.out.println("--Test persistencia");
+        Date date = new Date();
+        EstadoBicicleta estado_bici_test = new EstadoBicicleta("En reparacion");
+        estadobicidao.persistir(estado_bici_test);
+        Bicicleta bicicleta = new Bicicleta(date,estado_bici_test);
+        bicidao.persistir(bicicleta);
+        Long id_bici = bicicleta.getIdBicicleta();
+        System.out.println("Bicicleta persistio con id="+id_bici);
+        System.out.println("--Test agregar Alquiler");
+        //probamos agregar un alquiler a una bicicleta
+        Cliente cliente = new Cliente("Nico","Malcora",2727123,"A.Korn",'M',new Date(1993,01,24),"llal@hotmail.com","lalla"); 
+        clientedao.persistir(cliente);
+        Ubicacion ubicacion = new Ubicacion();
+		ubicaciondao.persistir(ubicacion);
+		EstadoEstacion estadoest = new EstadoEstacion();
+		estadoestaciondao.persistir(estadoest);
+		Estacion estacion = new Estacion("Pza Malvinas", 11, ubicacion, estadoest);
+		estaciondao.persistir(estacion);
+		EstadoBicicleta estadobici = new EstadoBicicleta("bueno");
+		estadobicidao.persistir(estadobici);
+		Alquiler alqui= new Alquiler(cliente, new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()),
+							estacion, bicicleta);
+		alquilerdao.persistir(alqui);
+        bicicleta.agregarAlquiler(alqui);
+        bicidao.actualizar(bicicleta);
+        id_bici= bicicleta.getIdBicicleta();
+		Long id_alquiler_bici = alqui.getBicicleta().getIdBicicleta();
+		System.out.println(" - Alquiler con id de bicicleta:"+id_alquiler_bici);
+	    System.out.println("--Test recuperar");
+        Bicicleta bici_recuperada = bicidao.recuperar(id_bici);
+        if (bici_recuperada != null){
+                System.out.println(" - Bicicleta recuperada con id="+id_bici);
+        }
+        bici_recuperada = bicidao.recuperar(new Long(99999)); //Esto no existe
+        if (bici_recuperada == null){
+                System.out.println(" - No existe Bicicleta con id 999999");
+        }
+        
+        System.out.println("--Test actualizar");
+        System.out.println("Antes de actualizar :" + bicicleta.getFechaIngreso().toString()); 
+        bicicleta.setFechaIngreso(new Date(2014,2,32));; //Actualizamos fecha.
+        bicicleta = bicidao.actualizar(bicicleta);
+        System.out.println("Actualizado: " + bicicleta.getFechaIngreso().toString());
+        System.out.println("--Test borrar");
+        bicidao.borrar(id_bici);
+       
+        if(bicidao.recuperar(id_bici) == null){
+                System.out.println("Entidad Bicicleta ya no existe");
+        }
+        
+        System.out.println("=====================================");
+        System.out.println("Test Estacion");
+        System.out.println("--Test persistencia");
+        EstadoEstacion estado_estacion_test = new EstadoEstacion("operativa");
+        estadoestaciondao.persistir(estado_estacion_test);
+        Ubicacion ubicacion_esta = new Ubicacion();
+        ubicaciondao.persistir(ubicacion_esta);
+        Estacion estacion_test = new Estacion("constitucion",3,ubicacion_esta,estado_estacion_test);
+        estaciondao.persistir(estacion_test);
+        Long id_esta = estacion_test.getIdEstacion();
+        System.out.println("Estacion persistio con id="+id_esta);
+	    System.out.println("--Test recuperar");
+        Estacion esta_recuperada = estaciondao.recuperar(id_esta);
+        if (esta_recuperada != null){
+                System.out.println(" - Estacion recuperada con id="+id_esta);
+        }
+        esta_recuperada = estaciondao.recuperar(new Long(99999)); //Esto no existe
+        if (esta_recuperada == null){
+                System.out.println(" - No existe Estacion con id 999999");
+        }
+        
+        System.out.println("--Test actualizar");
+        System.out.println("Antes de actualizar nombre :" + estacion_test.getNombre()); 
+        estacion_test.setNombre("Rodrigo");; //Actualizamos nombre.
+        estacion_test = estaciondao.actualizar(estacion_test);
+        System.out.println("Actualizado: " + estacion_test.getNombre());
+        System.out.println("--Test borrar");
+        estaciondao.borrar(id_esta);
+       
+        if(estaciondao.recuperar(id_esta) == null){
+                System.out.println("Entidad Estacion ya no existe");
+        }
+		
+	    System.out.println("=====================================");
+        System.out.println("Test HistorialBicicleta");
+        System.out.println("--Test persistencia");
+        date = new Date();
+        Timestamp time = new Timestamp(date.getTime());
+        estado_bici = new EstadoBicicleta("Denunciada");
+        estadobicidao.persistir(estado_bici);
+        HistorialBicicleta historial = new HistorialBicicleta(time,estado_bici);
+        historialdao.persistir(historial);
+        Long id_historial= historial.getHistorialBicicletaId();
+        System.out.println("HistorialBicicleta persistio con id="+id_historial);
+        System.out.println("--Test recuperar");
+        HistorialBicicleta historial_recuperado = historialdao.recuperar(id_historial);
+        if (historial_recuperado != null){
+                System.out.println(" - HistorialBicicleta recuperado con id="+id_historial);
+        }
+        historial_recuperado = historialdao.recuperar(new Long(99999)); //Esto no existe
+        if (historial_recuperado == null){
+                System.out.println(" - No existe HistorialBicicleta con id 999999");
+        }
+        System.out.println("--Test actualizar");
+        EstadoBicicleta estado_prueba = new EstadoBicicleta("En reparacion");
+        estadobicidao.persistir(estado_prueba);
+        System.out.println("Antes de actualizar, estado historial:" + historial.getEstado().getDescripcion()); 
+        historial.setEstado(estado_prueba); //Actualizamos descripcion.
+        historial= historialdao.actualizar(historial);
+        System.out.println("Actualizado estado historial: " + historial.getEstado().getDescripcion());
+        System.out.println("--Test borrar");
+        historialdao.borrar(id_historial);
+       
+        if(historialdao.recuperar(id_historial) == null){
+                System.out.println("Entidad HistorialBicicleta ya no existe");
+        }
 		
 	}
 	
