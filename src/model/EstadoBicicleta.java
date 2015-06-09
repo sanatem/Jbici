@@ -1,6 +1,10 @@
 package model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="estado_bicicleta")
@@ -30,6 +34,11 @@ public class EstadoBicicleta {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+
+	public Long getIdEstadoBicicleta() {
+		return this.idEstadoBicicleta;
 	}
 	
 	

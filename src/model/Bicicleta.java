@@ -4,7 +4,16 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="bicicleta")
@@ -20,7 +29,7 @@ public class Bicicleta {
 	@OneToOne(optional = false) //Uno a Uno Unidireccional
 	private EstadoBicicleta estadoActual;
 
-	@OneToMany(mappedBy="bicicleta")
+	@OneToMany(mappedBy="bicicleta",cascade=CascadeType.ALL)
 	private List<Alquiler> alquileres;
 	
 	
@@ -66,6 +75,10 @@ public class Bicicleta {
 	public List<Alquiler> getAlquileres() {
 		return alquileres;
 	}
+	
+	public List<HistorialBicicleta> getHistorial(){
+		return this.historialEstados;
+	}
 
 	private void setAlquileres(List<Alquiler> alquileres) {
 		this.alquileres = alquileres;
@@ -89,6 +102,15 @@ public class Bicicleta {
 		this.historialEstados = historial_estados;
 	}
 
+	//agregar estado al historial de la bicleta
+	public void agregarHistorial(HistorialBicicleta historial){
+		this.historialEstados.add(historial);
+	}
+	
+	//agregar alquiler a la bicicleta
+	public void agregarAlquiler(Alquiler alquiler){
+		this.alquileres.add(alquiler);
+	}
 
 	
 	

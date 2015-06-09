@@ -2,7 +2,12 @@ package model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="historial_bicicleta")
@@ -17,6 +22,11 @@ public class HistorialBicicleta {
 	
 	@OneToOne(optional=false)
 	private EstadoBicicleta estado;
+	
+	public HistorialBicicleta(Timestamp time, EstadoBicicleta estado){
+		this.fecha = time;
+		this.estado = estado;
+	}
 	
 	public HistorialBicicleta(){
 		

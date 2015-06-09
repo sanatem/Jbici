@@ -8,6 +8,5 @@ public class BicicletaDAOhiberJPA extends GenericDAOhiberJPA<Bicicleta> implemen
 	public BicicletaDAOhiberJPA() {
 		super(Bicicleta.class);
 	}
-
 	
 }

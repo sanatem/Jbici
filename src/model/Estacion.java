@@ -3,7 +3,16 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="estacion")
@@ -45,6 +54,10 @@ public class Estacion {
 	}
 	//Getter & Setter
 	
+	public Long getIdEstacion(){
+		return this.idEstacion;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -76,6 +89,9 @@ public class Estacion {
 		this.estadoEstacion = estadoEstacion;
 	}
 	
-	
+	//agregar bicicleta a la estacion
+	public void agregarBicicleta(Bicicleta bici){
+		this.bicicletas.add(bici);
+	}
 	
 }
