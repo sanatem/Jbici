@@ -1,6 +1,10 @@
 package model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="ubicacion")
@@ -8,7 +12,10 @@ public class Ubicacion {
 
 	@Id@GeneratedValue
 	@Column(name="id")
+	private Long idUbicacion;
+	
 	private int latitud;
+
 	private int longitud;
 	private String direccionPostal;
 	
@@ -44,5 +51,12 @@ public class Ubicacion {
 		this.direccionPostal = direccionPostal;
 	}
 	
+	public Long getIdUbicacion() {
+		return idUbicacion;
+	}
+
+	public void setIdUbicacion(Long idUbicacion) {
+		this.idUbicacion = idUbicacion;
+	}
 	
 }

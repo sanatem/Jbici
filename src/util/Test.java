@@ -295,9 +295,9 @@ public class Test {
         System.out.println("Bicicleta persistio con id="+id_bici);
         System.out.println("--Test agregar Alquiler");
         //probamos agregar un alquiler a una bicicleta
-        Cliente cliente = new Cliente("Nico","Malcora",2727123,"A.Korn",'M',new Date(1993,01,24),"llal@hotmail.com","lalla"); 
+        cliente = new Cliente("Nico","Malcora",2727123,"A.Korn",'M',new Date(1993,01,24),"llal@hotmail.com","lalla"); 
         clientedao.persistir(cliente);
-        Ubicacion ubicacion = new Ubicacion();
+        ubicacion = new Ubicacion();
 		ubicaciondao.persistir(ubicacion);
 		EstadoEstacion estadoest = new EstadoEstacion();
 		estadoestaciondao.persistir(estadoest);
