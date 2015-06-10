@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,7 +33,10 @@ public class Bicicleta {
 	@OneToMany(mappedBy="bicicleta",cascade=CascadeType.ALL)
 	private List<Alquiler> alquileres;
 	
-	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="estacion_id")
+	private Estacion estacionActual;
+
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="bicicleta_id")	
 	private List<HistorialBicicleta> historialEstados;
@@ -45,13 +49,15 @@ public class Bicicleta {
 	}
 
 	
-	public Bicicleta(Date fechaIngreso, EstadoBicicleta estadoActual) {
+	public Bicicleta(Date fechaIngreso, EstadoBicicleta estadoActual, Estacion estacion) {
 		super();
 		this.fecha_ingreso = fechaIngreso;
 		this.estadoActual = estadoActual;
 		this.alquileres = new LinkedList<Alquiler>();
 		this.historialEstados = new LinkedList<HistorialBicicleta>();
+		this.estacionActual = estacion;
 	}
+
 	
 
 	//Getter & setter
@@ -61,6 +67,15 @@ public class Bicicleta {
 
 	public void setIdBicicleta(Long bicicletaId) {
 		this.idBicicleta = bicicletaId;
+	}
+	
+	public Estacion getEstacionActual() {
+		return estacionActual;
+	}
+
+
+	public void setEstacionActual(Estacion estacionActual) {
+		this.estacionActual = estacionActual;
 	}
 	
 	public Date getFechaIngreso() {

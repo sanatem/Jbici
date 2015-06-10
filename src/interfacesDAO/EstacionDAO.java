@@ -3,6 +3,8 @@ package interfacesDAO;
 import java.io.Serializable;
 
 import model.Estacion;
+import model.Bicicleta;
+import java.util.List;
 
 public interface EstacionDAO extends GenericDAO<Estacion> {
 	@Override
@@ -18,5 +20,5 @@ public interface EstacionDAO extends GenericDAO<Estacion> {
 	@Override
 	public Estacion recuperar(Serializable id);
 
-
+	public List<Bicicleta> recuperarBicicletas(Long estacion_id);
 }

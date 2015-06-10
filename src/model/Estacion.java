@@ -26,8 +26,7 @@ public class Estacion {
 	private String nombre;
 	private int estacionamientosLibres;
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@JoinColumn(name="estacion_id")
+	@OneToMany(mappedBy="estacionActual",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<Bicicleta> bicicletas;
 	
 	@OneToOne(optional = false)

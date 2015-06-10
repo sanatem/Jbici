@@ -1,8 +1,10 @@
 package interfacesDAO;
 
 import java.io.Serializable;
+import java.util.List;
 
 import model.Cliente;
+import model.Alquiler;
 
 public interface ClienteDAO extends GenericDAO<Cliente>{
 		@Override
@@ -18,6 +20,7 @@ public interface ClienteDAO extends GenericDAO<Cliente>{
 		@Override
 		public Cliente recuperar(Serializable id);
 
+		public List<Alquiler> recuperarAlquileres(Long cliente_id);
 }
 
 

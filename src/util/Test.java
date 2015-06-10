@@ -14,6 +14,7 @@ import interfacesDAO.UbicacionDAO;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import model.Administrador;
 import model.Alquiler;
@@ -87,15 +88,19 @@ public class Test {
 		System.out.println("--Test persistencia");
 		Cliente cliente =  new Cliente("Matthew","McConaughey",8596321,"Los Angeles",'M',new Date(1969,11,04),"matthew@mail.com","interstellar321"); 
 		clientedao.persistir(cliente);
+		id = cliente.getIdUsuario();
 		System.out.println(" - Cliente persistido con id="+id);
+		System.out.println("--Test coleccion Cliente<->Alquiler* (Bidireccion)");
 		Alquiler alquiler = getAlquilerPersistido(ubicaciondao, estadoestaciondao, bicidao, estadobicidao, alquilerdao, estaciondao, cliente);
-		//Probamos agregar un alquiler
+		//Agregamos un alquiler
 		cliente.agregarAlquiler(alquiler);
 		clientedao.actualizar(cliente);
 		id = cliente.getIdUsuario();
-		Long id_alquiler = alquiler.getCliente().getIdUsuario();
-		System.out.println(" - Alquiler con id de cliente:"+id_alquiler);
-		
+		Long id_alqui_usuario = alquiler.getCliente().getIdUsuario();
+		System.out.println(" - Lado Alquiler, traemos su cliente con id cliente="+id_alqui_usuario);
+		List<Alquiler> resul = clientedao.recuperarAlquileres(id); //Recibe un id de cliente
+		System.out.println(" - Lado cliente, recuperamos alquileres, el primero con id="+resul.get(0).getAlquilerId());
+		 
 		System.out.println("--Test recuperar");
 		Cliente cliente_recuperado = clientedao.recuperar(id);
 		if (cliente_recuperado != null){
@@ -299,28 +304,52 @@ public class Test {
                 System.out.println("Entidad EstadoEstacion ya no existe");
         }
        
+        
         /**
          * Test de Bicicleta
          */
         System.out.println("=====================================");
         System.out.println("Test Bicicleta");
         System.out.println("--Test persistencia");
+        //Datos necesarios para persistir una bicicleta.
         Date date = new Date();
         EstadoBicicleta estado_bici_test = new EstadoBicicleta("En reparacion");
         estadobicidao.persistir(estado_bici_test);
-        Bicicleta bicicleta = new Bicicleta(date,estado_bici_test);
+        EstadoEstacion estado_estacion_test = new EstadoEstacion("operativa");
+        estadoestaciondao.persistir(estado_estacion_test);
+        Ubicacion ubicacion_esta = new Ubicacion();
+        ubicaciondao.persistir(ubicacion_esta);
+        Estacion estacion_test = new Estacion("constitucion",3,ubicacion_esta,estado_estacion_test);
+        estaciondao.persistir(estacion_test);
+        
+        Bicicleta bicicleta = new Bicicleta(date,estado_bici_test,estacion_test);
         bicidao.persistir(bicicleta);
         Long id_bici = bicicleta.getIdBicicleta();
         System.out.println("Bicicleta persistio con id="+id_bici);
-        System.out.println("--Test agregar Alquiler");
-        //probamos agregar un alquiler a una bicicleta
+        System.out.println("--Test coleccion Bicicleta<->Alquiler* (Bidireccion)");
+        
+        //Probamos del lado Alquiler.
 		Alquiler alqui= getAlquilerPersistido(ubicaciondao,estadoestaciondao, bicidao,estadobicidao, alquilerdao,estaciondao,cliente);
+        bicicleta = alqui.getBicicleta();
         bicicleta.agregarAlquiler(alqui);
         bicidao.actualizar(bicicleta);
         id_bici= bicicleta.getIdBicicleta();
 		Long id_alquiler_bici = alqui.getBicicleta().getIdBicicleta();
-		System.out.println(" - Alquiler con id de bicicleta:"+id_alquiler_bici);
-	    System.out.println("--Test recuperar");
+		System.out.println(" - Lado Alquiler, con id de bicicleta:"+id_alquiler_bici);
+		
+		//Traemos todos los alquileres para la bicicleta (Lado bicicleta).
+		List<Alquiler> res = bicidao.recuperarAlquileres(id_bici); //Con un id de bici.
+		System.out.println(" - Lado Bicicleta, traemos lista de alquileres, 1er alquiler con id="+res.get(0).getAlquilerId());
+		//Traemos los historiales de la bicicleta
+		System.out.println("--Test coleccion Bicicleta -> HistorialBicicleta (Unidireccional) ");
+		HistorialBicicleta his = new HistorialBicicleta(new Timestamp(new Date().getTime()), estado_bici_test);
+		historialdao.persistir(his);
+		bicicleta.agregarHistorial(his);
+		bicidao.actualizar(bicicleta);
+		Bicicleta bicihistorial = bicidao.recuperarconHistorial(id_bici); //Con un id de bici.
+		System.out.println(" - Historiales de la bicicleta, traemos el primero con id="+bicihistorial.getHistorial().get(0).getHistorialBicicletaId());
+		
+		System.out.println("--Test recuperar");
         Bicicleta bici_recuperada = bicidao.recuperar(id_bici);
         if (bici_recuperada != null){
                 System.out.println(" - Bicicleta recuperada con id="+id_bici);
@@ -342,18 +371,37 @@ public class Test {
                 System.out.println("Entidad Bicicleta ya no existe");
         }
         
+        
+        /**
+         * Test Estacion
+         */
         System.out.println("=====================================");
         System.out.println("Test Estacion");
         System.out.println("--Test persistencia");
-        EstadoEstacion estado_estacion_test = new EstadoEstacion("operativa");
+        estado_estacion_test = new EstadoEstacion("operativa");
         estadoestaciondao.persistir(estado_estacion_test);
-        Ubicacion ubicacion_esta = new Ubicacion();
+        ubicacion_esta = new Ubicacion();
         ubicaciondao.persistir(ubicacion_esta);
-        Estacion estacion_test = new Estacion("constitucion",3,ubicacion_esta,estado_estacion_test);
+        estacion_test = new Estacion("constitucion",3,ubicacion_esta,estado_estacion_test);
         estaciondao.persistir(estacion_test);
         Long id_esta = estacion_test.getIdEstacion();
         System.out.println("Estacion persistio con id="+id_esta);
-	    System.out.println("--Test recuperar");
+	    
+        System.out.println("--Test colecciones Estacion<->Bicicleta* (Bidireccion)");
+        //Lado Estacion, agregamos una bicicleta
+        EstadoBicicleta est = new EstadoBicicleta();
+        estadobicidao.persistir(est);
+        Bicicleta bici_test = new Bicicleta(new Date(2015,11,25),est,estacion_test);
+        bicidao.persistir(bici_test);
+        estacion_test.agregarBicicleta(bici_test);
+        estaciondao.actualizar(estacion_test);
+        bicidao.actualizar(bici_test);
+        Long id_est = bicidao.recuperar(bici_test.getIdBicicleta()).getEstacionActual().getIdEstacion();
+        System.out.println(" - Lado Bicicleta, traemos su estacion actual con id="+id_est);
+		List<Bicicleta> resultado = estaciondao.recuperarBicicletas(id_est); //Recibe un id de cliente
+		System.out.println(" - Lado Estacion, recuperamos bicicletas, el primero con id="+resultado.get(0).getIdBicicleta());
+		
+        System.out.println("--Test recuperar");
         Estacion esta_recuperada = estaciondao.recuperar(id_esta);
         if (esta_recuperada != null){
                 System.out.println(" - Estacion recuperada con id="+id_esta);
@@ -365,7 +413,7 @@ public class Test {
         
         System.out.println("--Test actualizar");
         System.out.println("Antes de actualizar nombre :" + estacion_test.getNombre()); 
-        estacion_test.setNombre("Rodrigo");; //Actualizamos nombre.
+        estacion_test.setNombre("Est. Rodrigo");; //Actualizamos nombre.
         estacion_test = estaciondao.actualizar(estacion_test);
         System.out.println("Actualizado: " + estacion_test.getNombre());
         System.out.println("--Test borrar");
@@ -375,6 +423,10 @@ public class Test {
                 System.out.println("Entidad Estacion ya no existe");
         }
 		
+        /**
+         * Test HistorialBicicleta
+         */
+        
 	    System.out.println("=====================================");
         System.out.println("Test HistorialBicicleta");
         System.out.println("--Test persistencia");
@@ -386,6 +438,8 @@ public class Test {
         historialdao.persistir(historial);
         Long id_historial= historial.getHistorialBicicletaId();
         System.out.println("HistorialBicicleta persistio con id="+id_historial);
+        
+        
         System.out.println("--Test recuperar");
         HistorialBicicleta historial_recuperado = historialdao.recuperar(id_historial);
         if (historial_recuperado != null){
@@ -408,7 +462,8 @@ public class Test {
         if(historialdao.recuperar(id_historial) == null){
                 System.out.println("Entidad HistorialBicicleta ya no existe");
         }
-		
+        
+        
 	}
 	
 	/**
@@ -425,7 +480,7 @@ public class Test {
 		estaciondao.persistir(estacion);
 		EstadoBicicleta estadobici = new EstadoBicicleta("bueno");
 		estadobicidao.persistir(estadobici);
-		Bicicleta bicicleta = new Bicicleta(new Date(),estadobici);
+		Bicicleta bicicleta = new Bicicleta(new Date(),estadobici,estacion);
 		bicidao.persistir(bicicleta);
 		Alquiler alquiler = new Alquiler(cliente, new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()),
 							estacion, bicicleta);
