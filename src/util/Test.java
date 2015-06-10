@@ -1,11 +1,30 @@
 package util;
 
-import interfacesDAO.*;
+import interfacesDAO.AdministradorDAO;
+import interfacesDAO.AlquilerDAO;
+import interfacesDAO.BicicletaDAO;
+import interfacesDAO.ClienteDAO;
+import interfacesDAO.DenunciaDAO;
+import interfacesDAO.EstacionDAO;
+import interfacesDAO.EstadoBicicletaDAO;
+import interfacesDAO.EstadoEstacionDAO;
+import interfacesDAO.FactoryDAO;
+import interfacesDAO.HistorialBicicletaDAO;
+import interfacesDAO.UbicacionDAO;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-import model.*;
+import model.Administrador;
+import model.Alquiler;
+import model.Bicicleta;
+import model.Cliente;
+import model.Denuncia;
+import model.Estacion;
+import model.EstadoBicicleta;
+import model.EstadoEstacion;
+import model.HistorialBicicleta;
+import model.Ubicacion;
 
 
 public class Test {
@@ -295,19 +314,7 @@ public class Test {
         System.out.println("Bicicleta persistio con id="+id_bici);
         System.out.println("--Test agregar Alquiler");
         //probamos agregar un alquiler a una bicicleta
-        cliente = new Cliente("Nico","Malcora",2727123,"A.Korn",'M',new Date(1993,01,24),"llal@hotmail.com","lalla"); 
-        clientedao.persistir(cliente);
-        ubicacion = new Ubicacion();
-		ubicaciondao.persistir(ubicacion);
-		EstadoEstacion estadoest = new EstadoEstacion();
-		estadoestaciondao.persistir(estadoest);
-		Estacion estacion = new Estacion("Pza Malvinas", 11, ubicacion, estadoest);
-		estaciondao.persistir(estacion);
-		EstadoBicicleta estadobici = new EstadoBicicleta("bueno");
-		estadobicidao.persistir(estadobici);
-		Alquiler alqui= new Alquiler(cliente, new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()),
-							estacion, bicicleta);
-		alquilerdao.persistir(alqui);
+		Alquiler alqui= getAlquilerPersistido(ubicaciondao,estadoestaciondao, bicidao,estadobicidao, alquilerdao,estaciondao,cliente);
         bicicleta.agregarAlquiler(alqui);
         bicidao.actualizar(bicicleta);
         id_bici= bicicleta.getIdBicicleta();
