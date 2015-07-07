@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+<ui:composition template="/WEB-INF/facelets/base.xhtml">
+
+	<ui:define name="body">
+		<div class="container">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h2 class="form-signin-heading">Bienvenido a Jbici</h2>
+				</div>
+				<div class="panel-body">
+				
+					<h:outputText value="#{loginBean.message}" escape="false"></h:outputText>
+					<h:form role="form" class="form-signin">
+						<!-- Username code -->
+						<div class="input-group signin-username">							
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> 
+								
+								<h:inputText 
+								value="#{loginBean.email}"
+								class="form-control" type="text" name="email"
+								pt:placeholder="Email"
+								required="required" /> <br />
+						</div>
+						<!-- Password code -->
+						<div class="input-group signin-password">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock"></i></span> 
+								
+								<h:inputSecret 
+								value="#{loginBean.password}"
+								class="form-control" type="password" name="password"
+								pt:placeholder="Contraseña"
+								required="required" /><br />
+						</div>
+						
+						<h:commandButton action="#{loginBean.login}" name="submit" value="Ingresar"
+							class="btn btn-lg btn-primary btn-block">
+						</h:commandButton>	
+						
+							<br/> 
+							<label>No posee cuenta en JBici?<a href="/Jbici-Prototipo/registro.html">
+								Registrese!</a>
+						</label>
+					</h:form>
+				</div>
+				<!-- Datos de ingreso -->
+				<div class="alert alert-warning alert-dismissible" role="alert">
+					<button  type="button" class="close" data-dismiss="alert"
+						aria-label="Close"><span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Datos para el ingreso</strong> Usuario: admin // Password:
+					admin . <br/> Usuario: user // Password: user . <br/>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>

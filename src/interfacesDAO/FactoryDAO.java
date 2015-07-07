@@ -48,6 +48,9 @@ public class FactoryDAO {
 		return new HistorialBicicletaDAOhiberJPA();
 	}
 	
+	public UsuarioDAO getUsuarioDAO(){
+		return new UsuarioDAOhiberJPA();
+	}
 	
 }
 

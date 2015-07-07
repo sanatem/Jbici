@@ -5,7 +5,7 @@ import model.Administrador;
 
 public interface AdministradorDAO extends GenericDAO<Administrador>{
 	@Override
-	public Administrador actualizar(Administrador cliente);
+	public Administrador actualizar(Administrador admin);
 	@Override
 	public void borrar(Administrador admin);
 	@Override
