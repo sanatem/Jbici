@@ -29,7 +29,7 @@ public class LoginBean {
     		}
     		else{
         		message ="ES ADMIN";
-        		return "admin/success"+"?faces-redirect=true";
+        		return "admin/admin"+"?faces-redirect=true";
     		}
     		
 
