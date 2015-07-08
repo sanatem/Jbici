@@ -4,10 +4,10 @@ import interfacesDAO.UsuarioDAO;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import model.Usuario;
-import util.Util;
 
 @ManagedBean(name="loginBean")
 @SessionScoped
@@ -34,12 +34,15 @@ public class LoginBean {
     	UsuarioDAO userdao = factory.getUsuarioDAO();
     	Usuario user = userdao.autenticacion(email, password);
     	if(user != null) {
-    		
             //Http session
-    		HttpSession session = Util.getSession();
+    		HttpSession session = (HttpSession)
+    		          FacesContext.
+    		          getCurrentInstance().
+    		          getExternalContext().
+    		          getSession(true);
             session.setAttribute("email", user.getEmail());
             session.setAttribute("userid", user.getIdUsuario());
-    		if(user instanceof model.Cliente){
+            if(user instanceof model.Cliente){
         		//Es cliente
         		return "/user/home"+"?faces-redirect=true";
     		}
@@ -55,10 +58,15 @@ public class LoginBean {
     	}
     }
     
-    public String getLogout(){
-        HttpSession session = Util.getSession();
+    public String logout(){
+    	HttpSession session = (HttpSession)
+		          FacesContext.
+		          getCurrentInstance().
+		          getExternalContext().
+		          getSession(true);
         session.invalidate();
-        return "../login.xhtml";
+        return "/Jbici/login.xhtml"+"?faces-redirect=true";
+    	
     }
     
     

@@ -7,12 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import model.Cliente;
 
 @ManagedBean(name="usuarioBean")
-@SessionScoped
+@RequestScoped
 public class RegistroBean {
 
 	FactoryDAO factory;

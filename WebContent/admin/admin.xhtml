@@ -85,9 +85,11 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="hidden"><a href="#page-top"></a></li>
 						<li class="page-scroll">
-						<h:outputLink value="#{loginBean.logout}">
-							<span class="glyphicon glyphicon-log-out"></span>Salir
-						</h:outputLink>	
+						<h:form>
+							<span class="glyphicon glyphicon-log-out"></span>
+							<h:commandLink action="#{loginBean.logout}" value="Salir"/>
+						</h:form>
+							
 						</li>
 					</ul>
 				</div>
