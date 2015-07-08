@@ -84,9 +84,11 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="hidden"><a href="#page-top"></a></li>
-						<li class="page-scroll"><a
-							href="#"><span
-								class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+						<li class="page-scroll">
+						<h:outputLink value="#{loginBean.logout}">
+							<span class="glyphicon glyphicon-log-out"></span>Salir
+						</h:outputLink>	
+						</li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

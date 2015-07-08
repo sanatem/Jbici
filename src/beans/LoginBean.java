@@ -3,12 +3,14 @@ import interfacesDAO.FactoryDAO;
 import interfacesDAO.UsuarioDAO;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSession;
 
 import model.Usuario;
+import util.Util;
 
 @ManagedBean(name="loginBean")
-@RequestScoped
+@SessionScoped
 public class LoginBean {
 
 	public String email;
@@ -31,7 +33,11 @@ public class LoginBean {
     	UsuarioDAO userdao = factory.getUsuarioDAO();
     	Usuario user = userdao.autenticacion(email, password);
     	if(user != null) {
-    		
+            // get Http Session and store username
+            HttpSession session = Util.getSession();
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("userid", user.getIdUsuario());
+            
     		if(user instanceof model.Cliente){
         		//Es cliente
         		return "/user/home"+"?faces-redirect=true";
@@ -48,8 +54,10 @@ public class LoginBean {
     	}
     }
     
-    public String logout(){
-    	return null;
+    public String getLogout(){
+        HttpSession session = Util.getSession();
+        session.invalidate();
+        return "../login.xhtml";
     }
     
     
