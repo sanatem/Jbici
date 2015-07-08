@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	
+<ui:composition template="/WEB-INF/facelets/base.xhtml">
+	<ui:define name="title">
+		User View
+	</ui:define>
+
+	<ui:define name="styles">
+		<link rel="stylesheet" href="../css/home.css"/>
+	</ui:define>
+	
+	
+    <ui:define name="body">
+	<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="home.xhtml">
+                    <span class="glyphicon glyphicon-home"></span>
+                     JBici
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="dropdown">
+			              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-replace-tmp-key="estaciones">Estaciones <span class="caret"></span></a>
+			              <ul class="dropdown-menu" role="menu">
+			                <li><a href="#">Mapa de estaciones</a></li>
+			                <li><a href="#">Listado de estaciones</a></li>
+			              </ul>
+         		   </li>
+         		   <li class="dropdown">
+			              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bicicletas 
+                            <span class="caret"></span></a>
+			              <ul class="dropdown-menu" role="menu">
+			                <li><a href="#">Retirar/Estacionar/Denunciar</a></li>
+			              </ul>
+         		   </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <ui:insert name="content">
+     <div class="jumbotron other-color">
+      <div class="container">
+        <h1>User view</h1>
+        <p>Aqui se podra acceder a todas las posibilidades que tenga un usuario del sistema !!</p>
+      </div>
+    </div>
+    </ui:insert>
+    </ui:define>
+    </ui:composition>
+</html>

@@ -16,24 +16,34 @@ public class LoginBean {
 	public String message;
 	private FactoryDAO factory = new FactoryDAO();
     
-	public String login(){
+	
+	public LoginBean(){
+		
+	}
+	
+	public LoginBean(String email,String password){
+		this.email = email;
+		this.password = password;
+   	}
+	
+    public String login(){
     	
     	UsuarioDAO userdao = factory.getUsuarioDAO();
     	Usuario user = userdao.autenticacion(email, password);
     	if(user != null) {
     		
     		if(user instanceof model.Cliente){
-        		message ="ES CLIENTE";
-        		return "success"+"?faces-redirect=true";
+        		//Es cliente
+        		return "/user/home"+"?faces-redirect=true";
     		}
     		else{
-        		message ="ES ADMIN";
+    			//Es admin
         		return "admin/admin"+"?faces-redirect=true";
     		}
     		
 
     	} else {
-    		message ="<div class='alert alert-danger'>Nombre de usuario o Contraseña inválidos</div>";
+    		message ="<div class='alert alert-danger'>Nombre de usuario o Contraseña invalidos</div>";
     		return "login";
     	}
     }
