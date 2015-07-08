@@ -13,7 +13,7 @@ import model.Cliente;
 
 @ManagedBean(name="usuarioBean")
 @SessionScoped
-public class UsuarioBean {
+public class RegistroBean {
 
 	FactoryDAO factory;
 	String nombre;
@@ -26,7 +26,7 @@ public class UsuarioBean {
 	String password;
 	String message;
 	
-	public UsuarioBean(){
+	public RegistroBean(){
 		super();
 		this.factory = new FactoryDAO();
 	}
