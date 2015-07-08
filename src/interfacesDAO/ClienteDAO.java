@@ -25,6 +25,8 @@ public interface ClienteDAO extends GenericDAO<Cliente>{
 		public List<Alquiler> recuperarAlquileres(Long cliente_id);
 		
 		public List<Usuario> getAllClients();
+		
+		public boolean existeConEmail(String email);
 }
 
 

@@ -10,4 +10,6 @@ public interface UsuarioDAO extends GenericDAO<Usuario> {
 	public Usuario autenticacion(String email,String password);
 
 	public List<Usuario> getAllUsers();
+	
+	
 }

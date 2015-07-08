@@ -39,8 +39,25 @@ public class ClienteDAOhiberJPA extends GenericDAOhiberJPA<Cliente> implements C
 			Query q = em.createQuery("FROM Cliente");
 			result = q.getResultList();
 		etx.commit();
-		
 		return  result;
+	}
+
+	@Override
+	public boolean existeConEmail(String email) {
+		EntityManager em = this.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		List<Cliente> result = null;
+		etx.begin();
+			Query q = em.createQuery("FROM Usuario as u WHERE u.email= :email");
+			q.setParameter("email", email);
+			result = q.getResultList();
+			etx.commit();
+			if(result.isEmpty()){
+				return false;
+			}
+			
+			return true;
+			
 	}
 	
 }

@@ -40,13 +40,25 @@ public class UsuarioBean {
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
-        this.password="1234";
-    	Cliente user = new Cliente(nombre, apellido, dni, domicilio,sexo, fecha,
-    			email,password);
-    	clientedao.persistir(user);
-    	LoginBean bean = new LoginBean(this.email,this.password,
-    			"Su clave por defecto es: 1234, para cambiarla acceda a Modificar datos");
-    	return bean.login();
+        
+        boolean existe = clientedao.existeConEmail(this.email);
+        
+        if(! existe){
+            //Si no existe
+            this.password="1234";
+            Cliente user = new Cliente(nombre, apellido, dni, domicilio,sexo, fecha,
+        			email,password);
+        	clientedao.persistir(user);
+        	LoginBean bean = new LoginBean(this.email,this.password,
+        			"Su clave por defecto es: 1234, para cambiarla acceda a Modificar datos");
+        	return bean.login();
+        }
+        else{
+    		message ="<div class='alert alert-danger'>Ya existe un usuario con ese ese email</div>";
+    		return "registro";
+        }
+        
+
    
     }
 
