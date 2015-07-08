@@ -23,9 +23,10 @@ public class LoginBean {
 		
 	}
 	
-	public LoginBean(String email,String password){
+	public LoginBean(String email,String password,String mensaje){
 		this.email = email;
 		this.password = password;
+		this.message=mensaje;
    	}
 	
     public String login(){
@@ -33,11 +34,11 @@ public class LoginBean {
     	UsuarioDAO userdao = factory.getUsuarioDAO();
     	Usuario user = userdao.autenticacion(email, password);
     	if(user != null) {
-            // get Http Session and store username
-            HttpSession session = Util.getSession();
+    		
+            //Http session
+    		HttpSession session = Util.getSession();
             session.setAttribute("email", user.getEmail());
             session.setAttribute("userid", user.getIdUsuario());
-            
     		if(user instanceof model.Cliente){
         		//Es cliente
         		return "/user/home"+"?faces-redirect=true";

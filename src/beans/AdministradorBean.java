@@ -18,20 +18,12 @@ public class AdministradorBean {
 	
 	private FactoryDAO factory = new FactoryDAO();
 	
-	public String valor;
 	
 	private ArrayList<Usuario> users = getAllUsers(); 
-	
-	public String getValor() {
-		return valor;
-	}
 
-	public void setValor(String valor) {
-		this.valor = valor;
-	}
 
 	public AdministradorBean(){
-		this.valor="PROBANDOO";
+
 	}
 	
     public ArrayList<Usuario> getAllUsers() {

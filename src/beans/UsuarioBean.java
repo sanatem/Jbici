@@ -33,17 +33,19 @@ public class UsuarioBean {
 	
     public String registrar(){    	
     	ClienteDAO clientedao = factory.getClienteDAO();
-        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("MM/dd/yyyy");
         Date fecha = null;
         try {
             fecha = formatoDelTexto.parse(this.fechan);
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
+        this.password="1234";
     	Cliente user = new Cliente(nombre, apellido, dni, domicilio,sexo, fecha,
     			email,password);
     	clientedao.persistir(user);
-    	LoginBean bean = new LoginBean(this.email,this.password);
+    	LoginBean bean = new LoginBean(this.email,this.password,
+    			"Su clave por defecto es: 1234, para cambiarla acceda a Modificar datos");
     	return bean.login();
    
     }

@@ -7,7 +7,7 @@
 	
 <ui:composition template="/WEB-INF/facelets/base.xhtml">
 	<ui:define name="title">
-		User View
+		Bienvenido Usuario
 	</ui:define>
 
 	<ui:define name="styles">
@@ -58,8 +58,10 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
-                    </li>
+						<h:outputLink value="#{loginBean.logout}">
+							<span class="glyphicon glyphicon-log-out"></span>Salir
+						</h:outputLink>
+					</li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -69,7 +71,8 @@
     <ui:insert name="content">
      <div class="jumbotron other-color">
       <div class="container">
-        <h1>User view</h1>
+        <h1>Bienvenido! </h1>
+        <p>Su clave por defecto es: '1234', para cambiarla acceda a Modificar datos </p>
         <p>Aqui se podra acceder a todas las posibilidades que tenga un usuario del sistema !!</p>
       </div>
     </div>
