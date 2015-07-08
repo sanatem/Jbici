@@ -14,6 +14,16 @@ public class LoginBean {
 	String email;
 	String password;
 	String message;
+	
+	public LoginBean(){
+		
+	}
+	
+	public LoginBean(String email,String password){
+		this.email = email;
+		this.password = password;
+   	}
+	
     public String login(){
     	//Traer el dao del usuario. X 
     	//Hacer la consulta a la DB usando el dao. -> User | null X
@@ -24,17 +34,17 @@ public class LoginBean {
     	if(user != null) {
     		
     		if(user instanceof model.Cliente){
-        		message ="ES CLIENTE";
-        		return "success"+"?faces-redirect=true";
+        		//Es cliente
+        		return "/user/home"+"?faces-redirect=true";
     		}
     		else{
-        		message ="ES ADMIN";
+    			//Es admin
         		return "admin/admin"+"?faces-redirect=true";
     		}
     		
 
     	} else {
-    		message ="<div class='alert alert-danger'>Nombre de usuario o Contraseña inválidos</div>";
+    		message ="<div class='alert alert-danger'>Nombre de usuario o Contraseï¿½a invï¿½lidos</div>";
     		return "login";
     	}
     }

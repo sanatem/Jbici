@@ -29,7 +29,7 @@
 								value="#{loginBean.email}"
 								class="form-control" type="text" name="email"
 								pt:placeholder="Email"
-								required="required" /> <br />
+								required="true" /> <br />
 						</div>
 						<!-- Password code -->
 						<div class="input-group signin-password">
@@ -40,7 +40,7 @@
 								value="#{loginBean.password}"
 								class="form-control" type="password" name="password"
 								pt:placeholder="Contraseña"
-								required="required" /><br />
+								required="true" /><br />
 						</div>
 						
 						<h:commandButton action="#{loginBean.login}" name="submit" value="Ingresar"
@@ -48,8 +48,8 @@
 						</h:commandButton>	
 						
 							<br/> 
-							<label>No posee cuenta en JBici?<a href="/Jbici-Prototipo/registro.html">
-								Registrese!</a>
+							<label>No posee cuenta en JBici?<h:outputLink value="registro.xhtml" > Registrese!</h:outputLink>
+ 
 						</label>
 					</h:form>
 				</div>
