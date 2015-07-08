@@ -9,6 +9,14 @@
 
 	<ui:define name="styles">
 		<link rel="stylesheet" href="../css/home.css"/>
+		<ui:insert name="admin_styles">
+		</ui:insert>
+	</ui:define>
+	
+	
+
+	<ui:define name="title">
+		Administrador - Panel
 	</ui:define>
 
 	<ui:define name="body">
@@ -23,7 +31,8 @@
 							class="icon-bar"></span>
 					</button>
 
-					<a class="navbar-brand" href="/Jbici-Prototipo/admin/admin.html">
+					<a class="navbar-brand" href="admin.xhtml">
+						
 						<span class="glyphicon glyphicon-home"></span> JBici
 					</a>
 				</div>
@@ -38,12 +47,12 @@
 							data-replace-tmp-key="estaciones">Estaciones <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/Jbici-Prototipo/admin/alta_estacion.html">Agregar
+								<li><a href="#">Agregar
 										Estacion</a></li>
 								<li><a
-									href="/Jbici-Prototipo/admin/listado_estaciones.html">Administrar
+									href="#">Administrar
 										Estaciones</a></li>
-								<li><a href="/Jbici-Prototipo/admin/estadisticas.html">Información
+								<li><a href="#">Información
 										estadística</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -51,29 +60,32 @@
 							data-replace-tmp-key="bicicletas">Bicicletas <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/Jbici-Prototipo/admin/alta_bici.html">Agregar
+								<li><a href="#">Agregar
 										Bicicleta</a></li>
 								<li><a
-									href="/Jbici-Prototipo/admin/listado_bicicletas.html">Administrar
+									href="#">Administrar
 										Bicicletas</a></li>
-								<li><a href="/Jbici-Prototipo/admin/historial.html">Historial
+								<li><a href="#">Historial
 										de Uso</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
 							data-replace-tmp-key="usuarios">Usuarios <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/Jbici-Prototipo/admin/editar_usuarios.html">Administrar
-										Usuarios</a></li>
+								<li>
+									<h:outputLink value="administrar_usuarios.xhtml" >
+										Administrar Usuarios
+									</h:outputLink>	
+								</li>
 								<li><a
-									href="/Jbici-Prototipo/admin/estadisticas_usuarios.html">Información
+									href="#">Información
 										estadística</a></li>
 							</ul></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="hidden"><a href="#page-top"></a></li>
 						<li class="page-scroll"><a
-							href="/Jbici-Prototipo/LoginServlet"><span
+							href="#"><span
 								class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 					</ul>
 				</div>
@@ -87,7 +99,9 @@
 				<div class="container">
 					<h1>Admin view</h1>
 					<p>Aqui se podra acceder a todas las posibilidades que tenga un
-						admin del sistema !!</p>
+						admin del sistema !!
+
+						</p>
 				</div>
 			</div>
 		</ui:insert>

@@ -11,14 +11,13 @@ import model.Usuario;
 @RequestScoped
 public class LoginBean {
 
-	String email;
-	String password;
-	String message;
-    public String login(){
-    	//Traer el dao del usuario. X 
-    	//Hacer la consulta a la DB usando el dao. -> User | null X
+	public String email;
+	public String password;
+	public String message;
+	private FactoryDAO factory = new FactoryDAO();
+    
+	public String login(){
     	
-    	FactoryDAO factory = new FactoryDAO();
     	UsuarioDAO userdao = factory.getUsuarioDAO();
     	Usuario user = userdao.autenticacion(email, password);
     	if(user != null) {

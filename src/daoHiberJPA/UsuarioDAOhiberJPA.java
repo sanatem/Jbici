@@ -36,10 +36,18 @@ public class UsuarioDAOhiberJPA extends GenericDAOhiberJPA<Usuario> implements U
 				return result.get(0);
 			}
 			
+	}
+
+	public List<Usuario> getAllUsers() {
+		EntityManager em = this.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		List<Usuario> result = null;
+		etx.begin();
+			Query q = em.createQuery("FROM Usuario");
+			result = q.getResultList();
+		etx.commit();
 		
-		
-		
-		
+		return result;
 	}
 	
 	
