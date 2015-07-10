@@ -17,7 +17,7 @@ public class LoginBean {
 	public String password;
 	public String message;
 	private FactoryDAO factory = new FactoryDAO();
-    
+    public String logout;
 	
 	public LoginBean(){
 		
@@ -42,12 +42,13 @@ public class LoginBean {
     		          getSession(true);
             session.setAttribute("email", user.getEmail());
             session.setAttribute("userid", user.getIdUsuario());
+            
             if(user instanceof model.Cliente){
-        		//Es cliente
+            	session.setAttribute("role", "client");
         		return "/user/home"+"?faces-redirect=true";
     		}
     		else{
-    			//Es admin
+    			session.setAttribute("role", "admin");
         		return "admin/admin"+"?faces-redirect=true";
     		}
     		
@@ -63,9 +64,10 @@ public class LoginBean {
 		          FacesContext.
 		          getCurrentInstance().
 		          getExternalContext().
-		          getSession(true);
+		          getSession(false);
         session.invalidate();
-        return "/Jbici/login.xhtml"+"?faces-redirect=true";
+        
+        return "/login.xhtml"+"?faces-redirect=true";
     	
     }
     

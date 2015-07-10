@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 	
 	
 <ui:composition template="/WEB-INF/facelets/base.xhtml">
@@ -56,22 +57,29 @@
          		   </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                	<li class="dropdown">
-			              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mi cuenta 
-                            <span class="caret"></span></a>
-			              <ul class="dropdown-menu" role="menu">
-			                <li><a href="modificar_datos.xhtml">Modificar Datos</a></li>
-			              </ul>
-         		   </li>
                     <li class="hidden">
                         <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-						<h:form>
-							<span class="glyphicon glyphicon-log-out"></span>
-							<h:commandLink action="#{userBean.logout}" value="Salir"/>
-						</h:form>
-					</li>
+                    </li>                
+                							<li class="dropdown">
+			              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+			              <span class="glyphicon glyphicon-user"></span>Mi cuenta 
+                            <span class="caret"></span></a>
+			              <ul class="dropdown-menu" role="menu">
+			                <li><a href="/user/modificar_datos.xhtml">
+			                	<span class="glyphicon glyphicon-cog"></span>Modificar mis datos
+			                	</a>
+			                </li>
+			                <li>
+                    			<h:form>
+									<h:commandLink 
+										action="#{loginBean.logout}"
+										styleClass="salir">
+										  <span class="glyphicon glyphicon-log-out"></span>Salir
+									</h:commandLink>
+								</h:form>
+							</li>
+			              </ul>
+         		   		</li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

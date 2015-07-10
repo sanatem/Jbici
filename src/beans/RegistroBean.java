@@ -57,9 +57,7 @@ public class RegistroBean {
     		message ="<div class='alert alert-danger'>Ya existe un usuario con ese ese email</div>";
     		return "registro";
         }
-        
 
-   
     }
 
 	public FactoryDAO getFactory() {

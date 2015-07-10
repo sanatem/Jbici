@@ -84,13 +84,26 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="hidden"><a href="#page-top"></a></li>
-						<li class="page-scroll">
-						<h:form>
-							<span class="glyphicon glyphicon-log-out"></span>
-							<h:commandLink action="#{loginBean.logout}" value="Salir"/>
-						</h:form>
-							
-						</li>
+						<li class="dropdown">
+			              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+			              <span class="glyphicon glyphicon-user"></span>Mi cuenta 
+                            <span class="caret"></span></a>
+			              <ul class="dropdown-menu" role="menu">
+			                <li><a href="modificar_datos.xhtml">
+			                	<span class="glyphicon glyphicon-cog"></span>Modificar mis datos
+			                	</a>
+			                </li>
+			                <li>
+                    			<h:form>
+									<h:commandLink 
+										action="#{loginBean.logout}"
+										styleClass="salir">
+										  <span class="glyphicon glyphicon-log-out"></span>Salir
+									</h:commandLink>
+								</h:form>
+							</li>
+			              </ul>
+         		   		</li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -104,8 +117,7 @@
 					<h1>Admin view</h1>
 					<p>Aqui se podra acceder a todas las posibilidades que tenga un
 						admin del sistema !!
-
-						</p>
+					</p>
 				</div>
 			</div>
 		</ui:insert>

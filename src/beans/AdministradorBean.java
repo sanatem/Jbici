@@ -37,6 +37,7 @@ public class AdministradorBean {
     	Cliente cliente = userdao.recuperar(id);
     	cliente.setEstado(true);
     	userdao.actualizar(cliente);
+    	this.users=getAllUsers();
     	return "administrar_usuarios";
     }
     public String deshabilitar(Long id){
@@ -44,6 +45,7 @@ public class AdministradorBean {
     	Cliente cliente = userdao.recuperar(id);
     	cliente.setEstado(false);
     	userdao.actualizar(cliente);
+    	this.users=getAllUsers();
     	return "administrar_usuarios";
     } 
     
