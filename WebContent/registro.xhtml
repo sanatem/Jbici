@@ -22,13 +22,13 @@
 			<div class="panel panel-info">	
 				<div class="panel-heading"><h2 class="form-signin-heading">Registrarse</h2></div>
 				<div class="panel-body">
-				<h:outputText value="#{usuarioBean.message}" escape="false"></h:outputText>
+				<h:outputText value="#{registroBean.message}" escape="false"></h:outputText>
 					<h:form role="form" class="form-horizontal" id="formId">	
 					  <div class="form-group">
 					    <label for="nombre" class="col-lg-2 control-label">Nombre/s</label>
 					    <div class="col-lg-10">
 					      <h:inputText 
-								value="#{usuarioBean.nombre}"
+								value="#{registroBean.nombre}"
 								class="form-control" id="nombre_us"
 								pt:placeholder="Nombre"
 								required="true" />
@@ -38,7 +38,7 @@
 					    <label for="apellido" class="col-lg-2 control-label">Apellido</label>
 					    <div class="col-lg-10">
 					      <h:inputText 
-								value="#{usuarioBean.apellido}"
+								value="#{registroBean.apellido}"
 								class="form-control" id="apellido"
 								pt:placeholder="Apellido"
 								required="true" />
@@ -48,8 +48,9 @@
 					    <label for="dni" class="col-lg-2 control-label">DNI</label>
 					    <div class="col-lg-10">
 					      <h:inputText 
-								value="#{usuarioBean.dni}"
-								class="form-control" id="dni"
+								value="#{registroBean.dni}"
+								class="form-control" 
+								id="dni"
 								pt:placeholder="DNI"
 								required="true" />
 					    </div>
@@ -58,7 +59,7 @@
 					    <label for="domicilio" class="col-lg-2 control-label">Domicilio</label>
 					    <div class="col-lg-10">
 					      <h:inputText 
-								value="#{usuarioBean.domicilio}"
+								value="#{registroBean.domicilio}"
 								class="form-control" id="domicilio"
 								pt:placeholder="Domicilio"
 								required="true" />
@@ -68,16 +69,18 @@
 					    <label for="fecha_nac" class="col-lg-2 control-label">Fecha de nacimiento</label>
 					    <div class="col-lg-10">
 					    	<h:inputText 
-								value="#{usuarioBean.fechan}" 
+								value="#{registroBean.fechan}" 
 								class="form-control"
 								id="fechan"
-								required="true" />
+								required="true">
+									
+								</h:inputText>
 					    </div>
 					  </div>
 					    <div class="form-group">
 					    <label for="sexo" class="col-lg-2 control-label">Sexo</label>
 					    <div class="col-lg-10">
-					      <h:selectOneMenu name="sexo" value="#{usuarioBean.sexo}">
+					      <h:selectOneMenu name="sexo" value="#{registroBean.sexo}">
 						   	<f:selectItem itemValue="M" itemLabel="Masculino" />
 						   	<f:selectItem itemValue="F" itemLabel="Femenino" />
 						  </h:selectOneMenu>
@@ -87,7 +90,7 @@
 					    <label for="email" class="col-lg-2 control-label">Email</label>
 					    <div class="col-lg-10">
 					      <h:inputText 
-								value="#{usuarioBean.email}"
+								value="#{registroBean.email}"
 								class="form-control" id="email"
 								pt:placeholder="Email"								
 								required="required" />
@@ -95,7 +98,7 @@
 					  </div>
 					  <div class="form-group">
 					    <div class="col-lg-offset-2 col-lg-10">
-							<h:commandButton action="#{usuarioBean.registrar}" name="submit" value="Registrarse"
+							<h:commandButton action="#{registroBean.registrar}" name="submit" value="Registrarse"
 							class="btn btn-primary">
 							</h:commandButton>	
 					    </div>
@@ -106,9 +109,13 @@
 				</div>
 			</div>
 		</div>
-		<script>
+	  <script>
 			$(function() {
-			$( "#formId\\:fechan" ).datepicker();
+			$( "#formId\\:fechan" ).datepicker({
+			      changeMonth: true,
+			      changeYear: true,
+			      dateFormat: "dd/mm/yy"
+				});
 			});
 	  </script>
 </ui:define>

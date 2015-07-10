@@ -111,11 +111,11 @@ public abstract class Usuario {
 		this.idUsuario = idUsuario;
 	}
 
-	private String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	private void setPassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	

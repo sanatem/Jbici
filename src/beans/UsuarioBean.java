@@ -16,19 +16,11 @@ import java.util.Date;
 public class UsuarioBean {
 
 	private FactoryDAO factory = new FactoryDAO();
-	
-	String nombre;
-	String apellido;
-	int dni;
-	String domicilio;
-	char sexo;
-	Date fechan;
-	String email;
-	String password;
-	String message;
-	
-	public UsuarioBean(){
 		
+	public Usuario user;
+	public String message;
+	
+	public UsuarioBean(){	
 		super();
 		HttpSession session = (HttpSession)
 		          FacesContext.
@@ -37,24 +29,23 @@ public class UsuarioBean {
 		          getSession(true);
 		Long user_id = (Long) session.getAttribute("userid");	
 		UsuarioDAO userdao = factory.getUsuarioDAO();
-		Usuario user = userdao.recuperar(user_id);
+		Usuario found_user = userdao.recuperar(user_id);
 		
-		if(user!=null){
-			this.nombre=user.getNombre();
-			this.apellido=user.getApellido();
-			this.dni=user.getDni();
-			this.domicilio = user.getDomicilio();
-			this.sexo = user.getSexo();
-			this.fechan = user.getFecha_nacimiento();
-			this.email=user.getEmail();
-			
-			
+		if(found_user!=null){			
+			this.user = found_user;
+
 		}
 	}
 	
-
+	public String actualizar(){
+		UsuarioDAO userdao = factory.getUsuarioDAO();
+		userdao.actualizar(user);
+		this.message="<div class='alert alert-success' role='alert'>Datos actualizados!</div>";
+		return "modificar_datos";
+	}
 	
 	
+	//Getters & Setters
 	
 	public FactoryDAO getFactory() {
 		return factory;
@@ -65,67 +56,67 @@ public class UsuarioBean {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return user.getNombre();
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.user.setNombre(nombre);
 	}
 
 	public String getApellido() {
-		return apellido;
+		return user.getApellido();
 	}
 
 	public void setApellido(String apellido) {
-		this.apellido = apellido;
+		this.user.setApellido(apellido);
 	}
 
-	public int getDni() {
-		return dni;
+	public Integer getDni() {
+		return user.getDni();
 	}
 
-	public void setDni(int dni) {
-		this.dni = dni;
+	public void setDni(Integer dni) {
+		this.user.setDni(dni);
 	}
 
 	public String getDomicilio() {
-		return domicilio;
+		return user.getDomicilio();
 	}
 
 	public void setDomicilio(String domicilio) {
-		this.domicilio = domicilio;
+		this.user.setDomicilio(domicilio);
 	}
 
 	public char getSexo() {
-		return sexo;
+		return user.getSexo();
 	}
 
 	public void setSexo(char sexo) {
-		this.sexo = sexo;
+		this.user.setSexo(sexo);
 	}
 
 	public Date getFechan() {
-		return fechan;
+		return user.getFecha_nacimiento();
 	}
 
 	public void setFechan(Date fechan) {
-		this.fechan = fechan;
+		this.user.setFechaNacimiento(fechan);
 	}
 
 	public String getEmail() {
-		return email;
+		return user.getEmail();
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.user.setEmail(email);
 	}
 
 	public String getPassword() {
-		return password;
+		return user.getPassword();
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.user.setPassword(password);
 	}
 
 	public String getMessage() {
@@ -136,7 +127,14 @@ public class UsuarioBean {
 		this.message = message;
 	}
 
-
+	
+	public Usuario getUser(){
+		return user;
+	}
+	
+	public void setUser( Usuario _user){
+		this.user=_user;
+	}
 	
 	
 	

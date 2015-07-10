@@ -11,20 +11,20 @@ import javax.faces.bean.RequestScoped;
 
 import model.Cliente;
 
-@ManagedBean(name="usuarioBean")
+@ManagedBean(name="registroBean")
 @RequestScoped
 public class RegistroBean {
 
-	FactoryDAO factory;
-	String nombre;
-	String apellido;
-	int dni;
-	String domicilio;
-	char sexo;
-	String fechan;
-	String email;
-	String password;
-	String message;
+	private FactoryDAO factory;
+	public String nombre;
+	public String apellido;
+	public Integer dni;
+	public String domicilio;
+	public char sexo;
+	public String fechan;
+	public String email;
+	public String password;
+	public String message;
 	
 	public RegistroBean(){
 		super();
@@ -33,7 +33,7 @@ public class RegistroBean {
 	
     public String registrar(){    	
     	ClienteDAO clientedao = factory.getClienteDAO();
-        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/mm/yy");
         Date fecha = null;
         try {
             fecha = formatoDelTexto.parse(this.fechan);
@@ -84,11 +84,11 @@ public class RegistroBean {
 		this.apellido = apellido;
 	}
 
-	public int getDni() {
+	public Integer getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 
