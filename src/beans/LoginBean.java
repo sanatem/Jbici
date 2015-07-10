@@ -34,6 +34,10 @@ public class LoginBean {
     	UsuarioDAO userdao = factory.getUsuarioDAO();
     	Usuario user = userdao.autenticacion(email, password);
     	if(user != null) {
+    		if(user instanceof model.Cliente && ((model.Cliente) user).getEstado()==false){
+        		message ="<div class='alert alert-danger'>Usuario inhabilitado, contactese con Administrador</div>";
+        		return "login";
+    		}
             //Http session
     		HttpSession session = (HttpSession)
     		          FacesContext.
@@ -51,7 +55,6 @@ public class LoginBean {
     			session.setAttribute("role", "admin");
         		return "admin/admin"+"?faces-redirect=true";
     		}
-    		
 
     	} else {
     		message ="<div class='alert alert-danger'>Nombre de usuario o Contraseña invalidos</div>";
