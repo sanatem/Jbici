@@ -17,7 +17,15 @@ public class Administrador extends Usuario {
 			String domicilio, char sexo, Date fecha_nacimiento, String email,String password) {
 		super(nombre,apellido,dni,domicilio,sexo,fecha_nacimiento,email,password);
 	}
+	
+	
 		
+	@Override
+	public Long getIdUsuario() {
+		// TODO Auto-generated method stub
+		return super.getIdUsuario();
+	}
+
 	public void habilitar_usuario(){
 		
 	}

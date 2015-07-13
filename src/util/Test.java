@@ -98,7 +98,7 @@ public class Test {
 		id = cliente.getIdUsuario();
 		Long id_alqui_usuario = alquiler.getCliente().getIdUsuario();
 		System.out.println(" - Lado Alquiler, traemos su cliente con id cliente="+id_alqui_usuario);
-		List<Alquiler> resul = clientedao.recuperarAlquileres(id); //Recibe un id de cliente
+		List<Alquiler> resul = alquilerdao.recuperarAlquileres(id); //Recibe un id de cliente
 		System.out.println(" - Lado cliente, recuperamos alquileres, el primero con id="+resul.get(0).getAlquilerId());
 		 
 		System.out.println("--Test recuperar");
@@ -121,6 +121,7 @@ public class Test {
 		if(clientedao.recuperar(id) == null){
 			System.out.println(" - Entidad cliente ya no existe!");
 		}
+		
 		
 		/**
 		 * Test Alquiler
@@ -462,7 +463,8 @@ public class Test {
         if(historialdao.recuperar(id_historial) == null){
                 System.out.println("Entidad HistorialBicicleta ya no existe");
         }
-        
+     
+   
         
 	}
 	

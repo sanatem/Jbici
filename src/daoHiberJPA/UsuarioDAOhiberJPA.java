@@ -1,5 +1,6 @@
 package daoHiberJPA;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -48,6 +49,42 @@ public class UsuarioDAOhiberJPA extends GenericDAOhiberJPA<Usuario> implements U
 		etx.commit();
 		
 		return result;
+	}
+
+	@Override
+	public Usuario actualizar(Usuario entity) {
+		// TODO Auto-generated method stub
+		return super.actualizar(entity);
+	}
+
+	@Override
+	public void borrar(Usuario entity) {
+		// TODO Auto-generated method stub
+		super.borrar(entity);
+	}
+
+	@Override
+	public Usuario borrar(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.borrar(id);
+	}
+
+	@Override
+	public boolean existe(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.existe(id);
+	}
+
+	@Override
+	public Usuario persistir(Usuario entity) {
+		// TODO Auto-generated method stub
+		return super.persistir(entity);
+	}
+
+	@Override
+	public Usuario recuperar(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.recuperar(id);
 	}
 	
 	

@@ -1,5 +1,6 @@
 package daoHiberJPA;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,18 +18,6 @@ public class ClienteDAOhiberJPA extends GenericDAOhiberJPA<Cliente> implements C
 		super(Cliente.class);
 	}
 
-	@Override
-	public List<Alquiler> recuperarAlquileres(Long cliente_id) {
-		EntityManager em = super.emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-			Query q = em.createQuery("FROM Alquiler as a where a.cliente.idUsuario = ?1");
-			q.setParameter(1, cliente_id);
-			List<Alquiler> result =(List<Alquiler>) q.getResultList();
-		etx.commit();
-		em.close();
-		return result;
-	}
 
 	@Override
 	public List<Usuario> getAllClients() {
@@ -59,5 +48,42 @@ public class ClienteDAOhiberJPA extends GenericDAOhiberJPA<Cliente> implements C
 			return true;
 			
 	}
+
+	@Override
+	public Cliente actualizar(Cliente entity) {
+		// TODO Auto-generated method stub
+		return super.actualizar(entity);
+	}
+
+	@Override
+	public void borrar(Cliente entity) {
+		// TODO Auto-generated method stub
+		super.borrar(entity);
+	}
+
+	@Override
+	public Cliente borrar(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.borrar(id);
+	}
+
+	@Override
+	public boolean existe(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.existe(id);
+	}
+
+	@Override
+	public Cliente persistir(Cliente entity) {
+		// TODO Auto-generated method stub
+		return super.persistir(entity);
+	}
+
+	@Override
+	public Cliente recuperar(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.recuperar(id);
+	}
+	
 	
 }

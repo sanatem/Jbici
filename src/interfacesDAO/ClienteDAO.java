@@ -21,8 +21,6 @@ public interface ClienteDAO extends GenericDAO<Cliente>{
 		public Cliente persistir(Cliente cliente);
 		@Override
 		public Cliente recuperar(Serializable id);
-
-		public List<Alquiler> recuperarAlquileres(Long cliente_id);
 		
 		public List<Usuario> getAllClients();
 		
