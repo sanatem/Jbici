@@ -13,6 +13,7 @@ import interfacesDAO.HistorialBicicletaDAO;
 import interfacesDAO.UbicacionDAO;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -98,7 +99,7 @@ public class Test {
 		id = cliente.getIdUsuario();
 		Long id_alqui_usuario = alquiler.getCliente().getIdUsuario();
 		System.out.println(" - Lado Alquiler, traemos su cliente con id cliente="+id_alqui_usuario);
-		List<Alquiler> resul = alquilerdao.recuperarAlquileres(id); //Recibe un id de cliente
+		ArrayList<Alquiler> resul = new ArrayList<Alquiler>(alquilerdao.recuperarAlquileresPorCliente(cliente.getIdUsuario())); //Recibe un id de cliente
 		System.out.println(" - Lado cliente, recuperamos alquileres, el primero con id="+resul.get(0).getAlquilerId());
 		 
 		System.out.println("--Test recuperar");
@@ -339,7 +340,7 @@ public class Test {
 		System.out.println(" - Lado Alquiler, con id de bicicleta:"+id_alquiler_bici);
 		
 		//Traemos todos los alquileres para la bicicleta (Lado bicicleta).
-		List<Alquiler> res = bicidao.recuperarAlquileres(id_bici); //Con un id de bici.
+		List<Alquiler> res = alquilerdao.recuperarAlquileresPorBicicleta(id_bici); //Con un id de bici.
 		System.out.println(" - Lado Bicicleta, traemos lista de alquileres, 1er alquiler con id="+res.get(0).getAlquilerId());
 		//Traemos los historiales de la bicicleta
 		System.out.println("--Test coleccion Bicicleta -> HistorialBicicleta (Unidireccional) ");

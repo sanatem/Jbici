@@ -20,8 +20,6 @@ public interface BicicletaDAO extends GenericDAO<Bicicleta>{
 	public Bicicleta persistir(Bicicleta bicicleta);
 	@Override
 	public Bicicleta recuperar(Serializable id);
-
-	public List<Alquiler> recuperarAlquileres(Long bicicleta_id);
 	
 	public Bicicleta recuperarconHistorial(Long id_bici);
 	

@@ -20,10 +20,20 @@ public aspect LogAspect {
 	//Pointcuts
 	//private pointcut persistirPointcut():execution(* daoHiberJPA.*.persistir(..));
 	
-	public pointcut logAdmin():execution(* daoHiberJPA.AdministradorDAOhiberJPA.*(..));
-	public pointcut logCliente():execution(* interfacesDAO.ClienteDAO.*(..));
-	public pointcut recuperarPointcut():execution(* daoHiberJPA.*.recuperar(..));
+	public pointcut logAdmin():execution(Administrador daoHiberJPA.AdministradorDAOhiberJPA.*(..));
+	public pointcut logCliente():execution(Cliente interfacesDAO.ClienteDAO.*(..));
+	public pointcut logAlquiler():execution(Alquiler daoHiberJPA.AlquilerDAOhiberJPA.*(..));
+	public pointcut logBicicleta():execution(Bicicleta daoHiberJPA.BicicletaDAOhiberJPA.*(..));
+	public pointcut logDenuncia():execution(Denuncia daoHiberJPA.DenunciaDAOhiberJPA.*(..));
+	public pointcut logEstacion():execution(Estacion daoHiberJPA.EstacionDAOhiberJPA.*(..));
+	public pointcut logEstadoBicicleta():execution(EstadoBicicleta daoHiberJPA.EstadoBicicletaDAOhiberJPA.*(..));
+	public pointcut logEstadoEstacion():execution(EstadoEstacion daoHiberJPA.EstadoEstacionDAOhiberJPA.*(..));
+	public pointcut logHistorialBicicleta():execution(HistorialBicicleta daoHiberJPA.HistorialBicicletaDAOhiberJPA.*(..));
+	public pointcut logUbicacion():execution(Ubicacion daoHiberJPA.UbicacionDAOhiberJPA.*(..));
 	
+	
+	
+	//public pointcut recuperarPointcut():execution(* daoHiberJPA.*.recuperar(..));
 	
 	//Advices
 /*	Object around():persistirPointcut(){
@@ -38,9 +48,7 @@ public aspect LogAspect {
 		Object obj = proceed();
 		Administrador admin =(Administrador) obj;
 		if(admin!=null){
-			System.out.println(">>>>>>>>>>>>>>DATOS A GUARDAR EN DB<<<<<<<<");
 			Long id = admin.getIdUsuario();
-			
 			String method_name = thisJoinPoint.getSignature().getName();
 			String class_name = admin.getClass().getSimpleName();
 			Timestamp time = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
@@ -60,10 +68,96 @@ public aspect LogAspect {
 		}
 		
 		return obj;
-		
 	}
 	
+	Object around():logAlquiler(){
+		Object obj = proceed();
+		Alquiler alq =(Alquiler) obj;
+		if(alq!=null){	
+			Long id = alq.getAlquilerId();
+			this.generate_log(id,alq,thisJoinPoint);
+		}
+		
+		return obj;
+	}
+	
+	Object around():logBicicleta(){
+		Object obj = proceed();
+		Bicicleta bici =(Bicicleta) obj;
+		if(bici!=null){	
+			Long id = bici.getIdBicicleta();
+			this.generate_log(id,bici,thisJoinPoint);
+		}
+		
+		return obj;
+	}	
+	
+	Object around():logDenuncia(){
+		Object obj = proceed();
+		Denuncia denuncia =(Denuncia) obj;
+		if(denuncia!=null){	
+			Long id = denuncia.getIdDenuncia();
+			this.generate_log(id,denuncia,thisJoinPoint);
+		}
+		
+		return obj;
+	}	
+	
+	Object around():logEstacion(){
+		Object obj = proceed();
+		Estacion est =(Estacion) obj;
+		if(est!=null){	
+			Long id = est.getIdEstacion();
+			this.generate_log(id,est,thisJoinPoint);
+		}
+		
+		return obj;
+	}		
+	
+	Object around():logEstadoBicicleta(){
+		Object obj = proceed();
+		EstadoBicicleta est =(EstadoBicicleta) obj;
+		if(est!=null){	
+			Long id = est.getIdEstadoBicicleta();
+			this.generate_log(id,est,thisJoinPoint);
+		}
+		
+		return obj;
+	}
+	
+	Object around():logEstadoEstacion(){
+		Object obj = proceed();
+		EstadoEstacion est =(EstadoEstacion) obj;
+		if(est!=null){	
+			Long id = est.getIdEstadoEstacion();
+			this.generate_log(id,est,thisJoinPoint);
+		}
+		
+		return obj;
+	}
 
+	Object around():logHistorialBicicleta(){
+		Object obj = proceed();
+		HistorialBicicleta hist =(HistorialBicicleta) obj;
+		if(hist!=null){	
+			Long id = hist.getHistorialBicicletaId();
+			this.generate_log(id,hist,thisJoinPoint);
+		}
+		
+		return obj;
+	}
+	
+	Object around():logUbicacion(){
+		Object obj = proceed();
+		Ubicacion ubicacion =(Ubicacion) obj;
+		if(ubicacion!=null){	
+			Long id = ubicacion.getIdUbicacion();
+			this.generate_log(id,ubicacion,thisJoinPoint);
+		}
+		
+		return obj;
+	}	
+	
 	//Helpers
 	
 	private <T> void generate_log(Long id,T entity,JoinPoint jp){
