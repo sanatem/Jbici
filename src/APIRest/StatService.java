@@ -16,12 +16,10 @@ public class StatService {
 	
 	
 	public List<Stat> getStatAsList(String entidad) {
-		String[] operations = {"alta","baja","modificacion"};
+		String[] operations = {"persistir","actualizar","borrar","recuperar"};
 		List<Stat> listaStats = new ArrayList<Stat>();
 		for(String elemento : operations){
-			List<Logger> logList = new ArrayList<Logger>();
-			logList.addAll(loggerDao.getLogsFromOperationAndEntity(elemento,entidad));
-			listaStats.add(new Stat(elemento,logList.size()));
+			listaStats.add(new Stat(elemento,loggerDao.getLogsFromOperationAndEntity(elemento,entidad).size()));
 		}
 		return listaStats;
 	}

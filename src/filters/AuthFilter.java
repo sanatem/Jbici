@@ -33,10 +33,12 @@ public class AuthFilter implements Filter {
             HttpSession ses = req.getSession(false);
             //  allow user to proccede if url is login.xhtml or user logged in or user is accessing any page in //public folder
             String reqURI = req.getRequestURI();
-            if ( reqURI.indexOf("/login.xhtml") >= 0 || reqURI.indexOf("/registro.xhtml") >= 0 || (ses != null && ses.getAttribute("email") != null)
-                                       || reqURI.contains("javax.faces.resource")){
+            if ( reqURI.indexOf("/login.xhtml") >= 0 || reqURI.indexOf("/registro.xhtml") >= 0 || reqURI.indexOf("/estadisticas.xhtml") >= 0 || (ses != null && ses.getAttribute("email") != null)
+                                       || reqURI.contains("javax.faces.resource"))
+            	
+            {
             	//1st auth phase passed!
-            	if (reqURI.indexOf("/login.xhtml") >= 0 || reqURI.indexOf("/registro.xhtml") >= 0 || (ses != null && autorizar((String)ses.getAttribute("role"),reqURI) ) )
+            	if (reqURI.indexOf("/login.xhtml") >= 0 || reqURI.indexOf("/registro.xhtml") >= 0 || reqURI.indexOf("/estadisticas.xhtml") >= 0 || (ses != null && autorizar((String)ses.getAttribute("role"),reqURI) ) )
             		//2nd phase
             		chain.doFilter(request, response);
             	else{
