@@ -1,5 +1,6 @@
 package daoHiberJPA;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,18 +18,7 @@ public class BicicletaDAOhiberJPA extends GenericDAOhiberJPA<Bicicleta> implemen
 		super(Bicicleta.class);
 	}
 
-	@Override
-	public List<Alquiler> recuperarAlquileres(Long bicicleta_id) {
-		EntityManager em = super.emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-			Query q = em.createQuery("FROM Alquiler as a where a.bicicleta.idBicicleta = :id_bici");
-			q.setParameter("id_bici", bicicleta_id);
-			List<Alquiler> result = q.getResultList();
-		etx.commit();
-		em.close();
-		return result;
-	}
+
 
 	@Override
 	public Bicicleta recuperarconHistorial(Long id_bici) {
@@ -44,5 +34,54 @@ public class BicicletaDAOhiberJPA extends GenericDAOhiberJPA<Bicicleta> implemen
 		
 		return entity;
 	}
+
+
+
+	@Override
+	public Bicicleta actualizar(Bicicleta entity) {
+		// TODO Auto-generated method stub
+		return super.actualizar(entity);
+	}
+
+
+
+	@Override
+	public void borrar(Bicicleta entity) {
+		// TODO Auto-generated method stub
+		super.borrar(entity);
+	}
+
+
+
+	@Override
+	public Bicicleta borrar(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.borrar(id);
+	}
+
+
+
+	@Override
+	public boolean existe(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.existe(id);
+	}
+
+
+
+	@Override
+	public Bicicleta persistir(Bicicleta entity) {
+		// TODO Auto-generated method stub
+		return super.persistir(entity);
+	}
+
+
+
+	@Override
+	public Bicicleta recuperar(Serializable id) {
+		// TODO Auto-generated method stub
+		return super.recuperar(id);
+	}
+	
 	
 }
