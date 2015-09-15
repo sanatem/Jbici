@@ -12,7 +12,7 @@ import model.Usuario;
 
 @ManagedBean(name="adminBean")
 @SessionScoped
-public class AdministradorBean {
+public class AdministradorUsuariosBean {
 	
 	private FactoryDAO factory = new FactoryDAO();
 	
@@ -20,7 +20,7 @@ public class AdministradorBean {
 	private ArrayList<Usuario> users = getAllUsers(); 
 
 
-	public AdministradorBean(){
+	public AdministradorUsuariosBean(){
 
 	}
 	

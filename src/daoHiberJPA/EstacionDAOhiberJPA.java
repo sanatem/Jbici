@@ -1,5 +1,7 @@
 package daoHiberJPA;
 
+import interfacesDAO.EstacionDAO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import interfacesDAO.EstacionDAO;
 import model.Bicicleta;
+import model.Cliente;
 import model.Estacion;
 import model.Usuario;
 
@@ -54,6 +56,24 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		// TODO Auto-generated method stub
 		return super.existe(id);
 	}
+	
+	@Override
+	public boolean existeConNombre(String nombre) {
+		EntityManager em = this.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		List<Cliente> result = null;
+		etx.begin();
+			Query q = em.createQuery("FROM Estacion as e WHERE e.nombre= :nom AND e.baja= :estado_elem");
+			q.setParameter("nom", nombre);
+			q.setParameter("estado_elem", 0);
+			result = q.getResultList();
+			etx.commit();
+			if(result.isEmpty()){
+				return false;
+			}
+			
+			return true;
+	}
 
 	@Override
 	public Estacion persistir(Estacion entity) {
@@ -74,6 +94,20 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		List<Estacion> result = null;
 		etx.begin();
 			Query q = em.createQuery("FROM Estacion");
+			result = q.getResultList();
+		etx.commit();
+		
+		return result;
+	}
+	
+	@Override
+	public List<Estacion> getAllEstacionesActivas(){
+		EntityManager em = this.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		List<Estacion> result = null;
+		etx.begin();
+			Query q = em.createQuery("FROM Estacion as e WHERE e.baja= :valor");
+			q.setParameter("valor", 0);
 			result = q.getResultList();
 		etx.commit();
 		

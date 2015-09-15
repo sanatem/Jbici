@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,6 +24,8 @@ public class Estacion implements aspects.LogInterface {
 	
 	private String nombre;
 	private int estacionamientosLibres;
+	private int estacionamientosOcupados;
+	private int baja;
 	
 	@OneToMany(mappedBy="estacionActual",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<Bicicleta> bicicletas;
@@ -42,6 +43,18 @@ public class Estacion implements aspects.LogInterface {
 		
 	}
 	
+	public Estacion(String nombre, int estacionamientosLibres,int estacionamientosOcupados,
+			Ubicacion ubicacionEstacion, EstadoEstacion estadoEstacion) {
+		super();
+		this.nombre = nombre;
+		this.estacionamientosLibres = estacionamientosLibres;
+		this.estacionamientosOcupados = estacionamientosOcupados;
+		this.ubicacionEstacion = ubicacionEstacion;
+		this.estadoEstacion = estadoEstacion;
+		this.bicicletas = new LinkedList<Bicicleta>();
+		this.baja=0;
+	}
+	
 	public Estacion(String nombre, int estacionamientosLibres,
 			Ubicacion ubicacionEstacion, EstadoEstacion estadoEstacion) {
 		super();
@@ -50,8 +63,10 @@ public class Estacion implements aspects.LogInterface {
 		this.ubicacionEstacion = ubicacionEstacion;
 		this.estadoEstacion = estadoEstacion;
 		this.bicicletas = new LinkedList<Bicicleta>();
+		this.baja=0;
 	}
 	//Getter & Setter
+	
 	
 	public Long getIdEstacion(){
 		return this.idEstacion;
@@ -88,6 +103,23 @@ public class Estacion implements aspects.LogInterface {
 		this.estadoEstacion = estadoEstacion;
 	}
 	
+	
+	public int getEstacionamientosOcupados() {
+		return estacionamientosOcupados;
+	}
+
+	public void setEstacionamientosOcupados(int estacionamientosOcupados) {
+		this.estacionamientosOcupados = estacionamientosOcupados;
+	}
+
+	public int getBaja() {
+		return baja;
+	}
+
+	public void setBaja(int baja) {
+		this.baja = baja;
+	}
+
 	//agregar bicicleta a la estacion
 	public void agregarBicicleta(Bicicleta bici){
 		this.bicicletas.add(bici);

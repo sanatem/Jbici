@@ -1,12 +1,12 @@
 package interfacesDAO;
 
 import java.io.Serializable;
+import java.util.List;
 
-import model.Estacion;
 import model.Bicicleta;
 
-import java.util.ArrayList;
-import java.util.List;
+import model.Estacion;
+
 
 public interface EstacionDAO extends GenericDAO<Estacion> {
 	@Override
@@ -23,5 +23,10 @@ public interface EstacionDAO extends GenericDAO<Estacion> {
 	public Estacion recuperar(Serializable id);
 
 	public List<Bicicleta> recuperarBicicletas(Long estacion_id);
+	
+	public boolean existeConNombre(String nombre);
+	
 	public List<Estacion> getAllEstaciones();
+	public List<Estacion> getAllEstacionesActivas();
+
 }

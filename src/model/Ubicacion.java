@@ -14,9 +14,9 @@ public class Ubicacion implements aspects.LogInterface{
 	@Column(name="id")
 	private Long idUbicacion;
 	
-	private int latitud;
+	private double latitud;
 
-	private int longitud;
+	private double longitud;
 	private String direccionPostal;
 	
 	//Constructor
@@ -32,16 +32,16 @@ public class Ubicacion implements aspects.LogInterface{
 	}
 	
 	//getter & setter
-	public int getLatitud() {
+	public double getLatitud() {
 		return latitud;
 	}
-	public void setLatitud(int latitud) {
+	public void setLatitud(double latitud) {
 		this.latitud = latitud;
 	}
-	public int getLongitud() {
+	public double getLongitud() {
 		return longitud;
 	}
-	public void setLongitud(int longitud) {
+	public void setLongitud(double longitud) {
 		this.longitud = longitud;
 	}
 	public String getDireccionPostal() {
