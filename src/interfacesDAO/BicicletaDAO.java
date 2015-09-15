@@ -1,6 +1,7 @@
 package interfacesDAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Bicicleta;
@@ -22,6 +23,7 @@ public interface BicicletaDAO extends GenericDAO<Bicicleta>{
 	public Bicicleta recuperar(Serializable id);
 	
 	public Bicicleta recuperarconHistorial(Long id_bici);
+	public List<Bicicleta> getAllBicicletas();
 	
 
 }

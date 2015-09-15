@@ -1,16 +1,6 @@
 package util;
 
-import interfacesDAO.AdministradorDAO;
-import interfacesDAO.AlquilerDAO;
-import interfacesDAO.BicicletaDAO;
-import interfacesDAO.ClienteDAO;
-import interfacesDAO.DenunciaDAO;
-import interfacesDAO.EstacionDAO;
-import interfacesDAO.EstadoBicicletaDAO;
-import interfacesDAO.EstadoEstacionDAO;
-import interfacesDAO.FactoryDAO;
-import interfacesDAO.HistorialBicicletaDAO;
-import interfacesDAO.UbicacionDAO;
+import interfacesDAO.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -44,7 +34,7 @@ public class Test {
 		ClienteDAO clientedao = factory.getClienteDAO();
 		DenunciaDAO denunciadao = factory.getDenunciaDAO();
 		EstacionDAO estaciondao = factory.getEstacionDAO();
-		EstadoBicicletaDAO estadobicidao = factory.getEstadoBicicleta();
+		EstadoBicicletaDAO estadobicidao = factory.getEstadoBicicletaDAO();
 		EstadoEstacionDAO estadoestaciondao = factory.getEstadoEstacion();
 		HistorialBicicletaDAO historialdao = factory.getHistorialBicicleta();
 		UbicacionDAO ubicaciondao = factory.getUbicacionDAO();
@@ -80,6 +70,8 @@ public class Test {
 		if(admindao.recuperar(id) == null){
 			System.out.println(" - Entidad admin ya no existe");
 		}
+		Administrador admin_def = new Administrador("Benedict", "Cumberbatch" , 37456987, "Baker st.",'M',new Date(1989,05,03),"admin@gmail.com","admin");
+		admindao.persistir(admin_def);
 		
 		/**
 		 * Test cliente

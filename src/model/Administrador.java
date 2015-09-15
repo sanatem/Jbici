@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("admin")
-public class Administrador extends Usuario {
+public class Administrador extends Usuario implements aspects.LogInterface {
 	
 
 	public Administrador(){
@@ -22,7 +22,7 @@ public class Administrador extends Usuario {
 		
 	@Override
 	public Long getIdUsuario() {
-		// TODO Auto-generated method stub
+		
 		return super.getIdUsuario();
 	}
 
@@ -32,6 +32,11 @@ public class Administrador extends Usuario {
 	
 	public void deshabilitar_usuario(){
 		
+	}
+
+	@Override
+	public Long getId() {
+		return getIdUsuario();
 	}	
 	
 }

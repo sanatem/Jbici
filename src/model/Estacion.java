@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="estacion")
-public class Estacion {
+public class Estacion implements aspects.LogInterface {
 	
 
 	@Id@GeneratedValue
@@ -91,6 +91,11 @@ public class Estacion {
 	//agregar bicicleta a la estacion
 	public void agregarBicicleta(Bicicleta bici){
 		this.bicicletas.add(bici);
+	}
+
+	@Override
+	public Long getId() {
+		return getIdEstacion();
 	}
 	
 }

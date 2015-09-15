@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="estado_bicicleta")
 
-public class EstadoBicicleta {
+public class EstadoBicicleta implements aspects.LogInterface {
 	
 	@Id@GeneratedValue
 	@Column(name="id")
@@ -39,6 +39,12 @@ public class EstadoBicicleta {
 
 	public Long getIdEstadoBicicleta() {
 		return this.idEstadoBicicleta;
+	}
+
+
+	@Override
+	public Long getId() {
+		return getIdEstadoBicicleta();
 	}
 	
 	

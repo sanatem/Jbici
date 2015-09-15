@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="tipo_user")
 @Table(name="usuario")
-public abstract class Usuario {
+public class Usuario implements aspects.LogInterface {
 	
 	@Id@GeneratedValue
 	@Column(name="id_usuario")
@@ -119,7 +119,9 @@ public abstract class Usuario {
 		this.password = password;
 	}
 
-
+	public Long getId(){
+		return idUsuario;
+	}
 	
 	
 	

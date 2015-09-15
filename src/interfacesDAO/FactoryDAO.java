@@ -2,25 +2,26 @@ package interfacesDAO;
 
 import daoHiberJPA.*;
 
+
 public class FactoryDAO {
 	/**
 	 * El patron factory se encargara de devolver las clases concretas.
 	 * 
 	 */
 	
-	public static AdministradorDAO getAdministradorDAO(){
+	public AdministradorDAO getAdministradorDAO(){
 		return new AdministradorDAOhiberJPA();
 	}
 	
-	public static AlquilerDAO getAlquilerDAO(){
+	public AlquilerDAO getAlquilerDAO(){
 		return new AlquilerDAOhiberJPA();
 	}
 	
-	public static BicicletaDAO getBicicletaDAO(){
+	public BicicletaDAO getBicicletaDAO(){
 		return new BicicletaDAOhiberJPA();
 	}
 
-	public EstadoBicicletaDAO getEstadoBicicleta() {
+	public EstadoBicicletaDAO getEstadoBicicletaDAO() {
 		return new EstadoBicicletaDAOhiberJPA();
 	}
 	

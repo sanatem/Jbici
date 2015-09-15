@@ -52,7 +52,7 @@ public class AuthFilter implements Filter {
      catch(Throwable t) {
          System.out.println( t.getMessage());
      }
-    } //doFilter
+    } //end doFilter
  
     
     private boolean autorizar(String role,String reqURI){

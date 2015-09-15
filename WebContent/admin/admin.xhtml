@@ -13,8 +13,11 @@
 		</ui:insert>
 	</ui:define>
 	
+  <ui:define name="head">
+  	 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+  	 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  </ui:define>
 	
-
 	<ui:define name="title">
 		Administrador - Panel
 	</ui:define>
@@ -60,11 +63,16 @@
 							data-replace-tmp-key="bicicletas">Bicicletas <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Agregar
-										Bicicleta</a></li>
-								<li><a
-									href="#">Administrar
-										Bicicletas</a></li>
+								<li>
+									<h:outputLink value="alta_bici.xhtml" >
+										Agregar Bicicleta
+									</h:outputLink>
+								</li>
+								<li>
+									<h:outputLink value="administrar_bicicletas.xhtml" >
+										Administrar Bicicletas
+									</h:outputLink>
+								</li>
 								<li><a href="#">Historial
 										de Uso</a></li>
 							</ul></li>
@@ -77,9 +85,11 @@
 										Administrar Usuarios
 									</h:outputLink>	
 								</li>
-								<li><a
-									href="#">Información
-										estadística</a></li>
+								<li>
+									<h:outputLink value="info_estadistica.xhtml" >
+										Informacion estadistica
+									</h:outputLink>										
+								</li>
 							</ul></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

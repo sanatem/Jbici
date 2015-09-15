@@ -1,6 +1,7 @@
 package daoHiberJPA;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import javax.persistence.Query;
 import interfacesDAO.BicicletaDAO;
 import model.Alquiler;
 import model.Bicicleta;
+import model.Estacion;
 import model.HistorialBicicleta;
 
 public class BicicletaDAOhiberJPA extends GenericDAOhiberJPA<Bicicleta> implements BicicletaDAO {
@@ -81,6 +83,20 @@ public class BicicletaDAOhiberJPA extends GenericDAOhiberJPA<Bicicleta> implemen
 	public Bicicleta recuperar(Serializable id) {
 		// TODO Auto-generated method stub
 		return super.recuperar(id);
+	}
+
+
+
+	@Override
+	public List<Bicicleta> getAllBicicletas() {
+		EntityManager em = this.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		List<Bicicleta> result = null;
+		etx.begin();
+			Query q = em.createQuery("FROM Bicicleta");
+			result = q.getResultList();
+		etx.commit();
+		return result;
 	}
 	
 	

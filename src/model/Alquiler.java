@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="alquiler")
-public class Alquiler {
+public class Alquiler implements aspects.LogInterface{
 	
 	private Timestamp fecha_inicio;
 	private Timestamp fecha_fin;
@@ -129,6 +129,11 @@ public class Alquiler {
 	
 	public void quitarDenuncia(){
 		this.denuncia = null;
+	}
+
+	@Override
+	public Long getId() {
+		return getAlquilerId();
 	}
 
 

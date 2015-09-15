@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="historial_bicicleta")
-public class HistorialBicicleta {
+public class HistorialBicicleta implements aspects.LogInterface{
 	
 	
 	@Id@GeneratedValue
@@ -51,6 +51,11 @@ public class HistorialBicicleta {
 
 	public void setHistorialBicicletaId(Long historialBicicletaId) {
 		this.idHistorialBicicleta = historialBicicletaId;
+	}
+
+	@Override
+	public Long getId() {
+		return getHistorialBicicletaId(); 
 	}
 	
 

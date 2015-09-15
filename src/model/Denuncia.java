@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import javax.persistence.*;
 @Entity
 @Table(name="denuncia")
-public class Denuncia {
+public class Denuncia implements aspects.LogInterface{
 	
 	private Timestamp fecha_denuncia;
 	
@@ -48,6 +48,11 @@ public class Denuncia {
 
 	public void setIdDenuncia(Long idDenuncia) {
 		this.idDenuncia = idDenuncia;
+	}
+
+	@Override
+	public Long getId() {
+		return getIdDenuncia();
 	}
 	
 	

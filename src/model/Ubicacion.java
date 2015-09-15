@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ubicacion")
-public class Ubicacion {
+public class Ubicacion implements aspects.LogInterface{
 
 	@Id@GeneratedValue
 	@Column(name="id")
@@ -57,6 +57,11 @@ public class Ubicacion {
 
 	public void setIdUbicacion(Long idUbicacion) {
 		this.idUbicacion = idUbicacion;
+	}
+
+	@Override
+	public Long getId() {
+		return getIdUbicacion();
 	}
 	
 }

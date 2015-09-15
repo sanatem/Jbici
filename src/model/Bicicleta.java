@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="bicicleta")
 
-public class Bicicleta {
+public class Bicicleta implements aspects.LogInterface{
 	
 	@Id@GeneratedValue
 	@Column(name="id_bicicleta")
@@ -27,7 +27,7 @@ public class Bicicleta {
 	
 	private Date fecha_ingreso;
 	
-	@OneToOne(optional = false) //Uno a Uno Unidireccional
+	@OneToOne() //Uno a Uno Unidireccional
 	private EstadoBicicleta estadoActual;
 
 	@OneToMany(mappedBy="bicicleta",cascade=CascadeType.ALL)
@@ -125,6 +125,12 @@ public class Bicicleta {
 	//agregar alquiler a la bicicleta
 	public void agregarAlquiler(Alquiler alquiler){
 		this.alquileres.add(alquiler);
+	}
+
+
+	@Override
+	public Long getId() {
+		return getIdBicicleta();
 	}
 
 	

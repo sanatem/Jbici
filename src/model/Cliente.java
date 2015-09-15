@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("cliente")
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements aspects.LogInterface{
 	
 	private Boolean estado;
 
@@ -62,6 +62,16 @@ public class Cliente extends Usuario {
 	
 	public void removerAlquiler(Alquiler unAlquiler) {
 		this.alquileres.remove(unAlquiler);
+	}
+	
+	public Long getIdUsuario() {
+		
+		return super.getIdUsuario();
+	}
+	
+	@Override
+	public Long getId() {
+		return getIdUsuario();
 	}
 	
 }

@@ -1,10 +1,8 @@
 package beans;
-import java.util.ArrayList;
-import java.util.List;
-
 import interfacesDAO.ClienteDAO;
 import interfacesDAO.FactoryDAO;
-import interfacesDAO.UsuarioDAO;
+
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,8 +25,8 @@ public class AdministradorBean {
 	}
 	
     public ArrayList<Usuario> getAllUsers() {
-        ClienteDAO userdao = factory.getClienteDAO();
-        this.users = (ArrayList<Usuario>) userdao.getAllClients();
+        ClienteDAO clientedao = factory.getClienteDAO();
+        this.users = (ArrayList<Usuario>) clientedao.getAllClients();
         return users;
     }
 
@@ -48,6 +46,8 @@ public class AdministradorBean {
     	this.users=getAllUsers();
     	return "administrar_usuarios";
     } 
+    
+
     
 	public ArrayList<Usuario> getUsers() {
 		return users;

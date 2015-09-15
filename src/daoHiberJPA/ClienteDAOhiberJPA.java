@@ -51,37 +51,37 @@ public class ClienteDAOhiberJPA extends GenericDAOhiberJPA<Cliente> implements C
 
 	@Override
 	public Cliente actualizar(Cliente entity) {
-		// TODO Auto-generated method stub
+		
 		return super.actualizar(entity);
 	}
 
 	@Override
 	public void borrar(Cliente entity) {
-		// TODO Auto-generated method stub
+		
 		super.borrar(entity);
 	}
 
 	@Override
 	public Cliente borrar(Serializable id) {
-		// TODO Auto-generated method stub
+		
 		return super.borrar(id);
 	}
 
 	@Override
 	public boolean existe(Serializable id) {
-		// TODO Auto-generated method stub
+		
 		return super.existe(id);
 	}
 
 	@Override
 	public Cliente persistir(Cliente entity) {
-		// TODO Auto-generated method stub
+		
 		return super.persistir(entity);
 	}
 
 	@Override
 	public Cliente recuperar(Serializable id) {
-		// TODO Auto-generated method stub
+		
 		return super.recuperar(id);
 	}
 	
