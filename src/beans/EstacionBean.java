@@ -64,8 +64,8 @@ public class EstacionBean {
 		estacionDAO.actualizar(this.estacion);	
 		ubidao.actualizar(this.estacion.getUbicacionEstacion());
 		estadao.actualizar(this.estacion.getEstadoEstacion());
-		this.message="<div class='alert alert-success' role='alert'>Datos de la estacion modificados con exito!</div>";
-		return "mod_estacion";
+		this.borrarCampos();
+		return "administrar_estaciones";
 
 	}
 
