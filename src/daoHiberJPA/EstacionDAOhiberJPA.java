@@ -3,7 +3,6 @@ package daoHiberJPA;
 import interfacesDAO.EstacionDAO;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,7 +12,6 @@ import javax.persistence.Query;
 import model.Bicicleta;
 import model.Cliente;
 import model.Estacion;
-import model.Usuario;
 
 public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements EstacionDAO{
 	public EstacionDAOhiberJPA() {
@@ -63,9 +61,8 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		EntityTransaction etx = em.getTransaction();
 		List<Cliente> result = null;
 		etx.begin();
-			Query q = em.createQuery("FROM Estacion as e WHERE e.nombre= :nom AND e.baja= :estado_elem");
+			Query q = em.createQuery("FROM Estacion as e WHERE e.nombre= :nom");
 			q.setParameter("nom", nombre);
-			q.setParameter("estado_elem", 0);
 			result = q.getResultList();
 			etx.commit();
 			if(result.isEmpty()){
@@ -106,8 +103,8 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		EntityTransaction etx = em.getTransaction();
 		List<Estacion> result = null;
 		etx.begin();
-			Query q = em.createQuery("FROM Estacion as e WHERE e.baja= :valor");
-			q.setParameter("valor", 0);
+			Query q = em.createQuery("FROM Estacion as e WHERE e.estadoEstacion.id= :valor");
+			q.setParameter("valor", 1);
 			result = q.getResultList();
 		etx.commit();
 		

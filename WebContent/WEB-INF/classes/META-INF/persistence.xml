@@ -39,7 +39,7 @@
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jbici_db" />
 	        <!-- Para habilitar la creacion de la base -->
 			
-			<!--
+			<!--  
 		  	<property name="hibernate.hbm2ddl.auto" value="create-drop"/> 
 			-->
 

@@ -73,8 +73,8 @@
 		           });
 		           
 		           //PASAR LAS COORDENADAS  AL FORMULARIO
-		           formulario.find("input[name='formulario:j_idt25']").val(lista[0]);
-		           formulario.find("input[name='formulario:j_idt26']").val(lista[1]);
+		           formulario.find("input[name='formulario:j_idt34']").val(lista[0]);
+		           formulario.find("input[name='formulario:j_idt35']").val(lista[1]);
 		               
 		           
 		           //DEJAR SOLO 1 MARCADOR EN EL MAPA
@@ -154,11 +154,13 @@
 					    <div class="form-group">
 					    <label for="estado_estacion" class="col-lg-2 control-label">Estado</label>
 					    <div class="col-lg-10">
-					      <h:selectOneMenu name="estado" value="#{EstacionBean.estado}">
-						   	<f:selectItem itemValue="operativa" itemLabel="Operativa" />
-						   	<f:selectItem itemValue="cerrada" itemLabel="Cerrada" />
-							<f:selectItem itemValue="construccion" itemLabel="En construccion" />
-						  </h:selectOneMenu>
+					       <h:selectOneMenu value="#{EstacionBean.estado}" styleClass="form-control">
+   								<f:selectItems 
+   									value="#{EstacionBean.estados}" var="e"
+   									itemLabel="#{e.descripcion}" 
+   									itemValue="#{e.id}"
+   									 />
+   							</h:selectOneMenu>
 					    </div>
 					  </div>
 					  <div class="form-group">

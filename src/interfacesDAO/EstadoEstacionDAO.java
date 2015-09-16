@@ -1,6 +1,7 @@
 package interfacesDAO;
 
 import java.io.Serializable;
+import java.util.List;
 
 import model.EstadoEstacion;
 
@@ -17,5 +18,7 @@ public interface EstadoEstacionDAO extends GenericDAO<EstadoEstacion>{
 	public EstadoEstacion persistir(EstadoEstacion estado);
 	@Override
 	public EstadoEstacion recuperar(Serializable id);
+	
+	public List<EstadoEstacion> getAllEstadoEstacion();
 
 }

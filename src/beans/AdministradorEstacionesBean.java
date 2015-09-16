@@ -31,10 +31,7 @@ public class AdministradorEstacionesBean {
 
     public String eliminar(Long id){
     	EstacionDAO estaciondao = factory.getEstacionDAO();
-    	Estacion estacion = estaciondao.recuperar(id);
-    	estacion.setBaja(1);
-    	estaciondao.actualizar(estacion);
-    	this.estaciones=getAllEstaciones();
+    	Estacion estacion = estaciondao.borrar(id);
     	return "administrar_estaciones";
     } 
     
