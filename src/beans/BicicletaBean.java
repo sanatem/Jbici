@@ -65,6 +65,12 @@ public class BicicletaBean {
     	return "administrar_bicicletas";
     }
     
+    
+    public String agregarForm(){
+    	clearBean();
+    	return "alta_bici";
+    }
+    
 
     private ArrayList<Bicicleta> getAllBicicletas() {
 		

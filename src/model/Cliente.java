@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,8 +13,8 @@ public class Cliente extends Usuario implements aspects.LogInterface{
 	
 	private Boolean estado;
 
-	@OneToMany(mappedBy="cliente",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	private List<Alquiler> alquileres;
+	@OneToMany(mappedBy="cliente",cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
+	private List<Alquiler> alquileres = new ArrayList<Alquiler>();
 	
 	public Cliente(){
 		
@@ -26,17 +27,7 @@ public class Cliente extends Usuario implements aspects.LogInterface{
 		this.alquileres = new LinkedList<Alquiler>();
 	}
 	
-	public Alquiler retirar_bici(Bicicleta bicicleta){
-		return null;
-	}
-	
-	public Alquiler estacionar_bici(Bicicleta bicicleta){
-		return null;
-	}
-	
-	public Denuncia denunciar_bici(Bicicleta bicicleta){
-		return null;
-	}
+
 	
 	//setters y getters
 

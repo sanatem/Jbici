@@ -23,7 +23,7 @@ public class Alquiler implements aspects.LogInterface{
 	@OneToOne(optional=true,cascade = CascadeType.ALL, orphanRemoval = true) //Denuncia opcional
 	private Denuncia denuncia;
 	
-	@OneToOne(optional=false)
+	@OneToOne()
 	private Estacion estacion_retira;
 	
 	@OneToOne(optional=true) //Opcional porque no sabemos cuando la devuelve
