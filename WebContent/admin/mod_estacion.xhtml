@@ -56,9 +56,9 @@
 		        var mapa = new google.maps.Map( $("#mapa")[0], config );
 	
 		        
-		        var long_inicial = document.getElementsByName("formulario:j_idt26")[0].value;
+		        var long_inicial = document.getElementsByName("formulario:j_idt35")[0].value;
 
-		        var lat_inicial = document.getElementsByName("formulario:j_idt25")[0].value;
+		        var lat_inicial = document.getElementsByName("formulario:j_idt34")[0].value;
 		        var direccion_inicial = new google.maps.LatLng(lat_inicial, long_inicial);
 			
 		        var marcador_inicial = new google.maps.Marker({
@@ -88,8 +88,8 @@
 		           });
 		           
 		           //PASAR LAS COORDENADAS  AL FORMULARIO
-		           formulario.find("input[name='formulario:j_idt25']").val(lista[0]);
-		           formulario.find("input[name='formulario:j_idt26']").val(lista[1]);
+		           formulario.find("input[name='formulario:j_idt34']").val(lista[0]);
+		           formulario.find("input[name='formulario:j_idt35']").val(lista[1]);
 		               
 		           
 		           //DEJAR SOLO 1 MARCADOR EN EL MAPA
@@ -115,8 +115,8 @@
 
 <ui:define name="content">
 		<div class="container">
-			<div class="panel panel-info">	
-				<div class="panel-heading"><h2 class="form-signin-heading">Agregar Estacion</h2></div>
+			<div class="panel panel-success">	
+				<div class="panel-heading"><h2 class="form-signin-heading">Modificar Estacion</h2></div>
 				<div class="panel-body">			
 					<h:outputText value="#{EstacionBean.message}" escape="false"></h:outputText>		  					
 					<h:form role="form" class="form-horizontal" id="formulario" name="formulario">
@@ -169,11 +169,13 @@
 					    <div class="form-group">
 					    <label for="estado_estacion" class="col-lg-2 control-label">Estado</label>
 					    <div class="col-lg-10">
-					      <h:selectOneMenu name="estado" value="#{EstacionBean.estado}">
-						   	<f:selectItem itemValue="operativa" itemLabel="Operativa" />
-						   	<f:selectItem itemValue="cerrada" itemLabel="Cerrada" />
-							<f:selectItem itemValue="construccion" itemLabel="En construccion" />
-						  </h:selectOneMenu>
+					     	<h:selectOneMenu value="#{EstacionBean.estado}" styleClass="form-control">
+   								<f:selectItems 
+   									value="#{EstacionBean.estados}" var="e"
+   									itemLabel="#{e.descripcion}" 
+   									itemValue="#{e.id}"
+   									 />
+   							</h:selectOneMenu>
 					    </div>
 					  </div>
 					  <div class="form-group">

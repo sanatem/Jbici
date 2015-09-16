@@ -24,8 +24,7 @@ public class Estacion implements aspects.LogInterface {
 	
 	private String nombre;
 	private int estacionamientosLibres;
-	private int estacionamientosOcupados;
-	private int baja;
+	private int capacidad;
 	
 	@OneToMany(mappedBy="estacionActual",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<Bicicleta> bicicletas;
@@ -33,7 +32,7 @@ public class Estacion implements aspects.LogInterface {
 	@OneToOne(optional = false)
 	private Ubicacion ubicacionEstacion;
 	
-	@OneToOne(optional = false)
+	@OneToOne
 	private EstadoEstacion estadoEstacion;
 	
 	
@@ -43,28 +42,17 @@ public class Estacion implements aspects.LogInterface {
 		
 	}
 	
-	public Estacion(String nombre, int estacionamientosLibres,int estacionamientosOcupados,
+	public Estacion(String nombre, int capacidad,
 			Ubicacion ubicacionEstacion, EstadoEstacion estadoEstacion) {
 		super();
 		this.nombre = nombre;
-		this.estacionamientosLibres = estacionamientosLibres;
-		this.estacionamientosOcupados = estacionamientosOcupados;
+		this.estacionamientosLibres = capacidad;
+		this.setCapacidad(capacidad);
 		this.ubicacionEstacion = ubicacionEstacion;
 		this.estadoEstacion = estadoEstacion;
 		this.bicicletas = new LinkedList<Bicicleta>();
-		this.baja=0;
 	}
-	
-	public Estacion(String nombre, int estacionamientosLibres,
-			Ubicacion ubicacionEstacion, EstadoEstacion estadoEstacion) {
-		super();
-		this.nombre = nombre;
-		this.estacionamientosLibres = estacionamientosLibres;
-		this.ubicacionEstacion = ubicacionEstacion;
-		this.estadoEstacion = estadoEstacion;
-		this.bicicletas = new LinkedList<Bicicleta>();
-		this.baja=0;
-	}
+
 	//Getter & Setter
 	
 	
@@ -104,21 +92,6 @@ public class Estacion implements aspects.LogInterface {
 	}
 	
 	
-	public int getEstacionamientosOcupados() {
-		return estacionamientosOcupados;
-	}
-
-	public void setEstacionamientosOcupados(int estacionamientosOcupados) {
-		this.estacionamientosOcupados = estacionamientosOcupados;
-	}
-
-	public int getBaja() {
-		return baja;
-	}
-
-	public void setBaja(int baja) {
-		this.baja = baja;
-	}
 
 	//agregar bicicleta a la estacion
 	public void agregarBicicleta(Bicicleta bici){
@@ -128,6 +101,14 @@ public class Estacion implements aspects.LogInterface {
 	@Override
 	public Long getId() {
 		return getIdEstacion();
+	}
+
+	public int getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(int capacidad) {
+		this.capacidad = capacidad;
 	}
 	
 }

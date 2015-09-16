@@ -5,6 +5,8 @@ import interfacesDAO.EstadoEstacionDAO;
 import interfacesDAO.FactoryDAO;
 import interfacesDAO.UbicacionDAO;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -19,7 +21,7 @@ public class EstacionBean {
 	Estacion estacion;
 	public String message;
 	Ubicacion ubicacion;
-	EstadoEstacion estado_estacion;
+	Long estado_estacion;
 	
 	private FactoryDAO factory = new FactoryDAO();
 	
@@ -27,13 +29,12 @@ public class EstacionBean {
 		super();
 		this.estacion = new Estacion();
 		this.ubicacion = new Ubicacion();
-		this.estado_estacion= new EstadoEstacion();
 	}
 	
 	public void borrarCampos(){
+		this.message= null;
 		this.estacion = new Estacion();
 		this.ubicacion = new Ubicacion();
-		this.estado_estacion= new EstadoEstacion();
 	}
 	
 	
@@ -43,11 +44,11 @@ public class EstacionBean {
 		UbicacionDAO ubicacionDAO = this.factory.getUbicacionDAO();
 		boolean existe = estacionDAO.existeConNombre(getNombre());
 		if (!existe){
+			EstadoEstacion estado = estadoEstacionDAO.recuperar(this.estado_estacion);
 			ubicacionDAO.persistir(this.ubicacion);
-			estadoEstacionDAO.persistir(this.estado_estacion);
 			this.estacion.setUbicacionEstacion(ubicacion);
-			this.estacion.setEstadoEstacion(estado_estacion);
-			estacionDAO.persistir(this.estacion);	
+			this.estacion.setEstadoEstacion(estado);
+			estacionDAO.persistir(this.estacion);
 			this.message="<div class='alert alert-success' role='alert'>Estacion agregada con exito!</div>";
 			this.borrarCampos();
 			return "alta_estacion";
@@ -59,11 +60,11 @@ public class EstacionBean {
 	
 	public String modificar_estacion(){
 		UbicacionDAO ubidao = this.factory.getUbicacionDAO();
-		EstadoEstacionDAO estadao = this.factory.getEstadoEstacion();
 		EstacionDAO estacionDAO = this.factory.getEstacionDAO();
+		EstadoEstacionDAO estadao = this.factory.getEstadoEstacion();
+		this.estacion.setEstadoEstacion(estadao.recuperar(new Long(this.estado_estacion)));
 		estacionDAO.actualizar(this.estacion);	
 		ubidao.actualizar(this.estacion.getUbicacionEstacion());
-		estadao.actualizar(this.estacion.getEstadoEstacion());
 		this.borrarCampos();
 		return "administrar_estaciones";
 
@@ -73,10 +74,14 @@ public class EstacionBean {
 		 EstacionDAO estaDAO = this.factory.getEstacionDAO();
 		 this.estacion = estaDAO.recuperar(id_estacion);
 		 this.ubicacion=this.estacion.getUbicacionEstacion();
-		 this.estado_estacion=this.estacion.getEstadoEstacion();
 		 return "mod_estacion";
 	 }
-	
+	 
+	 public ArrayList<EstadoEstacion> getEstados() {
+			EstadoEstacionDAO estadodao = factory.getEstadoEstacion();
+			return (ArrayList<EstadoEstacion>)estadodao.getAllEstadoEstacion();
+	 }
+	 
 
 	//Setters and Getters
 
@@ -123,11 +128,11 @@ public class EstacionBean {
 	}
 
 	public Integer getCant_bicis() {
-		return this.estacion.getEstacionamientosOcupados();
+		return this.estacion.getCapacidad();
 	}
 
 	public void setCant_bicis(Integer cant_bicis) {
-		this.estacion.setEstacionamientosOcupados(cant_bicis);
+		this.estacion.setCapacidad(cant_bicis);
 	}
 
 	public Integer getCant_lugares() {
@@ -146,12 +151,12 @@ public class EstacionBean {
 		this.ubicacion.setDireccionPostal(codpostal); 
 	}
 
-	public String getEstado() {
-		return this.estado_estacion.getDescripcion();
+	public Long getEstado() {
+		return this.estado_estacion;
 	}
 
-	public void setEstado(String estado) {
-		this.estado_estacion.setDescripcion(estado);
+	public void setEstado(Long estado){
+		this.estado_estacion = estado;
 	}
 
 	public Ubicacion getUbicacion() {
