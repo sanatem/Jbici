@@ -32,6 +32,20 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 	}
 
 	@Override
+	public List<Bicicleta> recuperarBicicletasDisponibles(Long estacion_id) {
+		EntityManager em = super.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+			Query q = em.createQuery("FROM Bicicleta as b WHERE b.estacionActual.idEstacion = :idest AND b.alquilada=false AND "
+									+ " b.estadoActual.id = :estado");
+			q.setParameter("idest", estacion_id);
+			q.setParameter("estado",new Long(1));
+			List<Bicicleta> res = q.getResultList(); 
+		etx.commit();
+		em.close();
+		return res;
+	}	
+	@Override
 	public Estacion actualizar(Estacion entity) {
 		// TODO Auto-generated method stub
 		return super.actualizar(entity);

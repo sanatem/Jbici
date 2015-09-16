@@ -41,6 +41,8 @@ public class Bicicleta implements aspects.LogInterface{
 	@JoinColumn(name="bicicleta_id")	
 	private List<HistorialBicicleta> historialEstados;
 	
+	private boolean alquilada;
+	
 	/**
 	 * Constructores
 	 */
@@ -56,6 +58,7 @@ public class Bicicleta implements aspects.LogInterface{
 		this.alquileres = new LinkedList<Alquiler>();
 		this.historialEstados = new LinkedList<HistorialBicicleta>();
 		this.estacionActual = estacion;
+		this.alquilada=false;
 	}
 
 	
@@ -131,6 +134,16 @@ public class Bicicleta implements aspects.LogInterface{
 	@Override
 	public Long getId() {
 		return getIdBicicleta();
+	}
+
+
+	public boolean isAlquilada() {
+		return alquilada;
+	}
+
+
+	public void setAlquilada(boolean alquilada) {
+		this.alquilada = alquilada;
 	}
 
 	

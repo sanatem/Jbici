@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import model.Bicicleta;
-
 import model.Estacion;
 
 
@@ -28,5 +27,7 @@ public interface EstacionDAO extends GenericDAO<Estacion> {
 	
 	public List<Estacion> getAllEstaciones();
 	public List<Estacion> getAllEstacionesActivas();
+	
+	public List<Bicicleta> recuperarBicicletasDisponibles(Long estacion_id);
 
 }

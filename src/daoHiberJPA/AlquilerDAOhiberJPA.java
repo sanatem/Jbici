@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import interfacesDAO.AlquilerDAO;
 import model.Alquiler;
+import model.Cliente;
 
 
 public class AlquilerDAOhiberJPA extends GenericDAOhiberJPA<Alquiler> implements AlquilerDAO {
@@ -35,7 +36,8 @@ public class AlquilerDAOhiberJPA extends GenericDAOhiberJPA<Alquiler> implements
 		EntityManager em = super.emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-			Query q = em.createQuery("FROM Alquiler");
+			Query q = em.createQuery("FROM Alquiler as a where a.cliente.id = :id_cli and a.fecha_devuelve = NULL");
+			q.setParameter("id_cli", cliente_id);
 			List<Alquiler> result = q.getResultList();
 		etx.commit();
 		em.close();
