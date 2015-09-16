@@ -8,6 +8,7 @@
 		type="text/javascript"></script>
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
+		//<![CDATA[
 		// Load the Visualization API and the piechart package.
 		google.load('visualization', '1.0', {
 			'packages' : [ 'corechart' ]
@@ -21,14 +22,14 @@
 		// draws it.
 		function drawChart() {
 
-			var url = "http://localhost:8080/Jbici/rest/stats/Bicicleta"; // Completar con URL del servicio REST
+			var url = "http://localhost:8080/Jbici/rest/stats/model.Bicicleta"; // Completar con URL del servicio REST
 			$.getJSON(url, function(data){
 
 			var googleData = new google.visualization.DataTable();
 			googleData.addColumn('string', 'operacion');
 			googleData.addColumn('number', 'cantidad');
 			var total = data.length;
-
+		
 			for(i=0;i<total;i++)
 			{
 				googleData.addRow([data[i].operacion, data[i].cantidad]); 
@@ -39,6 +40,7 @@
 			chart.draw(googleData, {width: 450, height: 300, title: 'Operaciones sobre Entidad X', is3D: true});
 		});
 		}
+		//]]>
 	</script>
 	<div id="chart_div"></div>
 </body>

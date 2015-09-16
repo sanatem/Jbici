@@ -48,6 +48,7 @@ public class EstacionBean {
 			ubicacionDAO.persistir(this.ubicacion);
 			this.estacion.setUbicacionEstacion(ubicacion);
 			this.estacion.setEstadoEstacion(estado);
+			this.estacion.setEstacionamientosLibres(this.getCant_bicis());
 			estacionDAO.persistir(this.estacion);
 			this.message="<div class='alert alert-success' role='alert'>Estacion agregada con exito!</div>";
 			this.borrarCampos();
@@ -65,7 +66,6 @@ public class EstacionBean {
 		this.estacion.setEstadoEstacion(estadao.recuperar(new Long(this.estado_estacion)));
 		estacionDAO.actualizar(this.estacion);	
 		ubidao.actualizar(this.estacion.getUbicacionEstacion());
-		this.borrarCampos();
 		return "administrar_estaciones";
 
 	}
@@ -80,6 +80,11 @@ public class EstacionBean {
 	 public ArrayList<EstadoEstacion> getEstados() {
 			EstadoEstacionDAO estadodao = factory.getEstadoEstacion();
 			return (ArrayList<EstadoEstacion>)estadodao.getAllEstadoEstacion();
+	 }
+	 
+	 public String vista_agregar(){
+		 this.borrarCampos();
+		 return "alta_estacion.xhtml";
 	 }
 	 
 

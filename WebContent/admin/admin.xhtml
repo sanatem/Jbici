@@ -50,12 +50,19 @@
 							data-replace-tmp-key="estaciones">Estaciones <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="alta_estacion.xhtml">Agregar
-										Estacion</a></li>
+								<li>
+								<h:form>
+								<h:commandLink
+								value="Agregar Estacion"
+								action="#{EstacionBean.vista_agregar}"
+								styleClass="salir">
+								</h:commandLink>
+								</h:form>
+								</li>
 								<li><a
 									href="administrar_estaciones.xhtml">Administrar
 										Estaciones</a></li>
-								<li><a href="#">Información
+								<li><a href="stats_estaciones.xhtml">Información
 										estadística</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"

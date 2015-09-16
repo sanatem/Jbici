@@ -38,15 +38,15 @@
 				mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
 			
-			
 			var mapa = new google.maps.Map($("#mapa")[0], config);
 
 			$.getJSON("http://localhost:8080/Jbici/rest/estaciones/listado",
 			        function(data){
+						var infowindow = new google.maps.InfoWindow();
 						for (var e in data)
 						{				           	
-							  var latitud = parseFloat(-34.920495); //parseFloat(data[e].ubicacionEstacion.latitud);
-							  var longitud = parseFloat(57.953566);//parseFloat(data[e].ubicacionEstacion.longitud);
+							  var latitud = parseFloat(data[e].ubicacionEstacion.latitud);
+							  var longitud = parseFloat(data[e].ubicacionEstacion.longitud);
 					         
 							  var marcador = new google.maps.Marker({
 					               position:new google.maps.LatLng(latitud, longitud),
@@ -55,15 +55,15 @@
 					               draggable:false
 					           });
 					          
+							 
 							  marcador.setMap(mapa);	
-						
 							  
-					          marcadores.push(marcador);
-					           
-					          google.maps.event.addListener(marcador, "click", function(){
-					              
-					           });
-					           
+							  google.maps.event.addListener(marcador, 'click', (function(marcador, e) {
+							        return function() {
+							          infowindow.setContent("Nombre: " + data[e].nombre + ", Capacidad: "+ data[e].capacidad + ", Estado: " + data[e].estadoEstacion.descripcion + ", Lugares libres: " + data[e].estacionamientosLibres);
+							          infowindow.open(mapa, marcador);
+							        }
+							      })(marcador, e));
 						}
 					});
 				});
