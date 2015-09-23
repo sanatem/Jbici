@@ -97,11 +97,7 @@ public class AlquilerBean {
 			
 			//Persistimos el alquiler
 			AlquilerDAO alquilerdao = factory.getAlquilerDAO();
-			alquilerdao.persistir(alquiler);
-			Cliente cliente = clientedao.recuperar(user.getId());
-			cliente.agregarAlquiler(alquiler);
-			
-			clientedao.actualizar(cliente);
+			alquilerdao.persistir(alquiler);			
 			setMessage("<div class='alert alert-success'>Bicicleta retirada exitósamente! con ID: #"+alquiler.getBicicleta().getId()+"</div>");
 		}
 		else{
@@ -139,11 +135,6 @@ public class AlquilerBean {
 			Bicicleta bici_devuelve = bicidao.recuperar(alqui.getBicicleta().getId());
 			bici_devuelve.setAlquilada(false);
 			bicidao.actualizar(bici_devuelve);
-			//Actualizamos al usuario
-			ClienteDAO clidao = factory.getClienteDAO();
-			Cliente cli_devuelve = clidao.recuperar(user.getId());
-			cli_devuelve.removerAlquiler(alqui);
-			clidao.actualizar(cli_devuelve);
 			
 			if(today.before(alqui.getFecha_fin())){
 				setMessage("<div class='alert alert-success'>Bicicleta devuelta exitósamente!</div>");
@@ -170,6 +161,19 @@ public class AlquilerBean {
         EstacionDAO estaciondao = factory.getEstacionDAO();
         return (ArrayList<Estacion>) estaciondao.getAllEstaciones();
 	}
+	
+	public List<Alquiler> getAlquileres(){
+		AlquilerDAO alquilerdao = factory.getAlquilerDAO();
+		return alquilerdao.recuperarAlquileresActivosPorCliente(user.getId());
+		
+	}
+	
+	public List<Alquiler> getHistorial(){
+		AlquilerDAO alquilerdao = factory.getAlquilerDAO();
+		return alquilerdao.recuperarAlquileresPorCliente(user.getId());
+		
+	}
+	
 
 	public Long getEstacion_bici() {
 		return estacion_bici;
@@ -195,11 +199,7 @@ public class AlquilerBean {
 		this.message = message;
 	}
 	
-	public List<Alquiler> getAlquileres(){
-		AlquilerDAO alquilerdao = factory.getAlquilerDAO();
-		return alquilerdao.recuperarAlquileresPorCliente(user.getId());
-		
-	}
+
 
 	public Long getId_alquiler() {
 		return id_alquiler;

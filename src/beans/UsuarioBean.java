@@ -19,6 +19,7 @@ public class UsuarioBean {
 		
 	public Usuario user;
 	public String message;
+	private String pass_verify;
 	
 	public UsuarioBean(){	
 		super();
@@ -39,8 +40,14 @@ public class UsuarioBean {
 	
 	public String actualizar(){
 		UsuarioDAO userdao = factory.getUsuarioDAO();
-		userdao.actualizar(user);
-		this.message="<div class='alert alert-success' role='alert'>Datos actualizados!</div>";
+		if(user.getPassword().equals(getPass_verify())){
+			userdao.actualizar(user);
+			this.message="<div class='alert alert-success' role='alert'>Datos actualizados!</div>";
+		}
+		else{
+			this.message="<div class='alert alert-danger' role='alert'>No pueden actualizarse los datos, contraseña erronea</div>";
+		}
+
 		return "modificar_datos";
 	}
 	
@@ -111,13 +118,6 @@ public class UsuarioBean {
 		this.user.setEmail(email);
 	}
 
-	public String getPassword() {
-		return user.getPassword();
-	}
-
-	public void setPassword(String password) {
-		this.user.setPassword(password);
-	}
 
 	public String getMessage() {
 		return message;
@@ -134,6 +134,14 @@ public class UsuarioBean {
 	
 	public void setUser( Usuario _user){
 		this.user=_user;
+	}
+
+	public String getPass_verify() {
+		return pass_verify;
+	}
+
+	public void setPass_verify(String pass_verify) {
+		this.pass_verify = pass_verify;
 	}
 	
 	

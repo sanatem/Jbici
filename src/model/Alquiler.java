@@ -34,12 +34,13 @@ public class Alquiler implements aspects.LogInterface{
 	@JoinColumn(name="bicicleta_id")
 	private Bicicleta bicicleta;
 	
-	
-	private boolean activo;
+
 	//Constructores
 	
 	public Alquiler(){
-		
+		this.fecha_devuelve = null;
+		this.estacion_devuelve = null;
+		this.denuncia = null;
 	}
 	
 	public Alquiler(Cliente cliente, Timestamp fecha_inicio, Timestamp fecha_fin,
@@ -50,10 +51,7 @@ public class Alquiler implements aspects.LogInterface{
 		this.fecha_fin = fecha_fin;
 		this.estacion_retira = estacion_retira;
 		this.bicicleta = bicicleta;
-		this.fecha_devuelve = null;
-		this.estacion_devuelve = null;
-		this.denuncia = null;
-		this.activo=true;
+
 	}
 
 	//Getter y setter 
@@ -139,13 +137,6 @@ public class Alquiler implements aspects.LogInterface{
 		return getAlquilerId();
 	}
 
-	public boolean isActivo() {
-		return activo;
-	}
-
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
 
 
 }

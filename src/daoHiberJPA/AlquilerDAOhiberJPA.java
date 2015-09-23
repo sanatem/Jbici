@@ -29,8 +29,8 @@ public class AlquilerDAOhiberJPA extends GenericDAOhiberJPA<Alquiler> implements
 		em.close();
 	}
 	
-	@Override
-	public List<Alquiler> recuperarAlquileresPorCliente(Long cliente_id) {
+
+	public List<Alquiler> recuperarAlquileresActivosPorCliente(Long cliente_id) {
 		EntityManager em = super.emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
@@ -42,7 +42,20 @@ public class AlquilerDAOhiberJPA extends GenericDAOhiberJPA<Alquiler> implements
 		return result;
 	}
 	
-	@Override
+
+	public List<Alquiler> recuperarAlquileresPorCliente(Long cliente_id) {
+		EntityManager em = super.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+			Query q = em.createQuery("FROM Alquiler as a where a.cliente.id = :id_cli and a.fecha_devuelve != NULL");
+			q.setParameter("id_cli", cliente_id);
+			List<Alquiler> result = q.getResultList();
+		etx.commit();
+		em.close();
+		return result;
+	}
+	
+
 	public List<Alquiler> recuperarAlquileresPorBicicleta(Long bicicleta_id) {
 		EntityManager em = super.emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
