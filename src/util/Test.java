@@ -70,7 +70,7 @@ public class Test {
 		if(admindao.recuperar(id) == null){
 			System.out.println(" - Entidad admin ya no existe");
 		}
-		Administrador admin_def = new Administrador("Benedict", "Cumberbatch" , 37456987, "Baker st.",'M',new Date(1989,05,03),"admin@gmail.com","admin");
+		Administrador admin_def = new Administrador("Benedict", "Cumberbatch" , 37456987, "Baker st.",'M',new Date(1989,05,03),"admin","admin");
 		admindao.persistir(admin_def);
 		
 		/**
@@ -123,7 +123,7 @@ public class Test {
 		System.out.println("Test Alquiler");
 		System.out.println("--Test persistencia");
 		//Creamos cliente 
-		cliente =  new Cliente("Tiffany","Hwang",12345678,"Los Angeles",'F',new Date(1969,11,04),"Tiffany@gmail.com","snsd"); 
+		cliente =  new Cliente("Tiffany","Hwang",12345678,"Los Angeles",'F',new Date(1969,11,04),"user","user"); 
 		clientedao.persistir(cliente);
 		alquiler = getAlquilerPersistido(ubicaciondao, estadoestaciondao, bicidao, estadobicidao, alquilerdao, estaciondao, cliente);
 		id = alquiler.getAlquilerId();

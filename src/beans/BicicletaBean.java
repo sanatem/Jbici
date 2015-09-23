@@ -98,12 +98,19 @@ public class BicicletaBean {
     	EstacionDAO estaciondao = factory.getEstacionDAO();
     	EstadoBicicleta estado= estadodao.recuperar(new Long(1)); //Estado Bueno ->Refactorizar aca. 
     	Estacion estacion = estaciondao.recuperar(new Long(this.estacion_bici));
+        if(estacion.getEstacionamientosLibres() > 0){
+        	//Si hay lugar en la estacion
+        	estacion.setEstacionamientosLibres(estacion.getEstacionamientosLibres()-1);
+        	estaciondao.actualizar(estacion);
+        	Date fecha = formatDate();
+        	Bicicleta bicicleta = new Bicicleta(fecha,estado,estacion);	
+        	bicicleta = bicidao.persistir(bicicleta);
+        	this.message="<div class='alert alert-success'>Bicicleta creada exitósamente! con ID: #"+bicicleta.getId()+"</div>";
+        }
+        else{
+        	this.message="<div class='alert alert-danger'>Error:La estación no posee lugares disponibles para ingresar nuevas bicicletas</div>";
+        }
         
-        Date fecha = formatDate();
-        
-    	Bicicleta bicicleta = new Bicicleta(fecha,estado,estacion);
-    	bicicleta = bicidao.persistir(bicicleta);
-		this.message="<div class='alert alert-success'>Bicicleta creada exitósamente! con ID: #"+bicicleta.getId()+"</div>";
 		clearBean();
 		getAllBicicletas();
 		return "alta_bici";

@@ -13,7 +13,7 @@ public class Cliente extends Usuario implements aspects.LogInterface{
 	
 	private Boolean estado;
 
-	@OneToMany(mappedBy="cliente",cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="cliente",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<Alquiler> alquileres = new ArrayList<Alquiler>();
 	
 	public Cliente(){

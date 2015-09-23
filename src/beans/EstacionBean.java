@@ -51,7 +51,6 @@ public class EstacionBean {
 			this.estacion.setEstacionamientosLibres(this.getCant_bicis());
 			estacionDAO.persistir(this.estacion);
 			this.message="<div class='alert alert-success' role='alert'>Estacion agregada con exito!</div>";
-			this.borrarCampos();
 			return "alta_estacion";
 		}else{
 			this.message="<div class='alert alert-danger' role='alert'>Ya existe una estacion con ese nombre</div>";
@@ -71,6 +70,7 @@ public class EstacionBean {
 	}
 
 	 public String vista_modificar(Long id_estacion){
+		 borrarCampos();
 		 EstacionDAO estaDAO = this.factory.getEstacionDAO();
 		 this.estacion = estaDAO.recuperar(id_estacion);
 		 this.ubicacion=this.estacion.getUbicacionEstacion();

@@ -28,19 +28,15 @@ public aspect LogAspect {
 	{
 	
 	Object obj = proceed();
-	//despues de guardar
 	Logger abmLog = new Logger();
 	abmLog.setTime(new java.sql.Timestamp(Calendar.getInstance().getTime().getTime()));
-	Object[] args = thisJoinPoint.getArgs();
 	String calledMethod = thisJoinPoint.getSignature().getName();
-	for (Object object : args) {
-		List<Class<?>> interfaces = Arrays.asList(object.getClass().getInterfaces());
-		doLog(abmLog, object, interfaces, calledMethod);
-	}
+	doLog(abmLog, obj, calledMethod);
+	
 	return obj; 
 }
 
-private void doLog(Logger abmLog, Object entity, List<Class<?>> interfaces, String calledMethod) {
+private void doLog(Logger abmLog, Object entity, String calledMethod) {
 	Long entityId = null;
 	String entityClass = null;
 	Method[] methods = entity.getClass().getDeclaredMethods();
@@ -51,7 +47,7 @@ private void doLog(Logger abmLog, Object entity, List<Class<?>> interfaces, Stri
 			break;
 		}
 	}
-	entityClass = entity.getClass().getName();
+	entityClass = entity.getClass().getSimpleName();
 	if(entityId!=null && entityClass != null && calledMethod != null){
 		abmLog.setEntity_id(entityId);
 		abmLog.setClass_name(entityClass);
@@ -65,14 +61,6 @@ private void doLog(Logger abmLog, Object entity, List<Class<?>> interfaces, Stri
 
 	//Helpers
 	
-/*	private <T> void generate_log(Long id,T entity,JoinPoint jp){
-		
-		String method_name = jp.getSignature().getName();
-		String class_name = entity.getClass().getSimpleName();
-		Timestamp time = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
-		Logger log = new Logger(method_name,time,class_name,id);
-		logdao.persistir(log);
-	}*/
 	
 	private Long getEntityId(Object entity,Method method) {
 		Long id = null;

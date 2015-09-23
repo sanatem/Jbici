@@ -44,29 +44,6 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		etx.commit();
 		em.close();
 		return res;
-	}	
-	@Override
-	public Estacion actualizar(Estacion entity) {
-		// TODO Auto-generated method stub
-		return super.actualizar(entity);
-	}
-
-	@Override
-	public void borrar(Estacion entity) {
-		// TODO Auto-generated method stub
-		super.borrar(entity);
-	}
-
-	@Override
-	public Estacion borrar(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.borrar(id);
-	}
-
-	@Override
-	public boolean existe(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.existe(id);
 	}
 	
 	@Override
@@ -86,11 +63,7 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 			return true;
 	}
 
-	@Override
-	public Estacion persistir(Estacion entity) {
-		// TODO Auto-generated method stub
-		return super.persistir(entity);
-	}
+
 
 	@Override
 	public Estacion recuperar(Serializable id) {

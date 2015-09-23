@@ -39,52 +39,6 @@ public class BicicletaDAOhiberJPA extends GenericDAOhiberJPA<Bicicleta> implemen
 
 
 
-	@Override
-	public Bicicleta actualizar(Bicicleta entity) {
-		// TODO Auto-generated method stub
-		return super.actualizar(entity);
-	}
-
-
-
-	@Override
-	public void borrar(Bicicleta entity) {
-		// TODO Auto-generated method stub
-		super.borrar(entity);
-	}
-
-
-
-	@Override
-	public Bicicleta borrar(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.borrar(id);
-	}
-
-
-
-	@Override
-	public boolean existe(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.existe(id);
-	}
-
-
-
-	@Override
-	public Bicicleta persistir(Bicicleta entity) {
-		// TODO Auto-generated method stub
-		return super.persistir(entity);
-	}
-
-
-
-	@Override
-	public Bicicleta recuperar(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.recuperar(id);
-	}
-
 
 
 	@Override

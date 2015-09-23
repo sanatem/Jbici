@@ -34,6 +34,8 @@ public class Alquiler implements aspects.LogInterface{
 	@JoinColumn(name="bicicleta_id")
 	private Bicicleta bicicleta;
 	
+	
+	private boolean activo;
 	//Constructores
 	
 	public Alquiler(){
@@ -51,6 +53,7 @@ public class Alquiler implements aspects.LogInterface{
 		this.fecha_devuelve = null;
 		this.estacion_devuelve = null;
 		this.denuncia = null;
+		this.activo=true;
 	}
 
 	//Getter y setter 
@@ -134,6 +137,14 @@ public class Alquiler implements aspects.LogInterface{
 	@Override
 	public Long getId() {
 		return getAlquilerId();
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 

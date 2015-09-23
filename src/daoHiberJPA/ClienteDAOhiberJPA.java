@@ -1,7 +1,6 @@
 package daoHiberJPA;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,7 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import interfacesDAO.ClienteDAO;
-import model.Alquiler;
 import model.Cliente;
 import model.Usuario;
 
@@ -49,41 +47,6 @@ public class ClienteDAOhiberJPA extends GenericDAOhiberJPA<Cliente> implements C
 			
 	}
 
-	@Override
-	public Cliente actualizar(Cliente entity) {
-		
-		return super.actualizar(entity);
-	}
 
-	@Override
-	public void borrar(Cliente entity) {
-		
-		super.borrar(entity);
-	}
-
-	@Override
-	public Cliente borrar(Serializable id) {
-		
-		return super.borrar(id);
-	}
-
-	@Override
-	public boolean existe(Serializable id) {
-		
-		return super.existe(id);
-	}
-
-	@Override
-	public Cliente persistir(Cliente entity) {
-		
-		return super.persistir(entity);
-	}
-
-	@Override
-	public Cliente recuperar(Serializable id) {
-		
-		return super.recuperar(id);
-	}
-	
 	
 }

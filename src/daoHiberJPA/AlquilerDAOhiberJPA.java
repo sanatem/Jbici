@@ -1,7 +1,6 @@
 package daoHiberJPA;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import javax.persistence.Query;
 
 import interfacesDAO.AlquilerDAO;
 import model.Alquiler;
-import model.Cliente;
 
 
 public class AlquilerDAOhiberJPA extends GenericDAOhiberJPA<Alquiler> implements AlquilerDAO {
@@ -57,42 +55,7 @@ public class AlquilerDAOhiberJPA extends GenericDAOhiberJPA<Alquiler> implements
 		return result;
 	}
 
-	@Override
-	public Alquiler actualizar(Alquiler entity) {
-		// TODO Auto-generated method stub
-		return super.actualizar(entity);
-	}
 
-	@Override
-	public void borrar(Alquiler entity) {
-		// TODO Auto-generated method stub
-		super.borrar(entity);
-	}
-
-	@Override
-	public Alquiler borrar(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.borrar(id);
-	}
-
-	@Override
-	public boolean existe(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.existe(id);
-	}
-
-	@Override
-	public Alquiler persistir(Alquiler entity) {
-		// TODO Auto-generated method stub
-		return super.persistir(entity);
-	}
-
-	@Override
-	public Alquiler recuperar(Serializable id) {
-		// TODO Auto-generated method stub
-		return super.recuperar(id);
-	}
-	
 	
 	
 }
