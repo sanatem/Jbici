@@ -32,7 +32,7 @@ public class EstacionBean {
 	}
 	
 	public void borrarCampos(){
-		this.message= null;
+	//	this.message= null;
 		this.estacion = new Estacion();
 		this.ubicacion = new Ubicacion();
 	}
@@ -50,6 +50,7 @@ public class EstacionBean {
 			this.estacion.setEstadoEstacion(estado);
 			this.estacion.setEstacionamientosLibres(this.getCant_bicis());
 			estacionDAO.persistir(this.estacion);
+			this.borrarCampos();
 			this.message="<div class='alert alert-success' role='alert'>Estacion agregada con exito!</div>";
 			return "alta_estacion";
 		}else{
@@ -70,7 +71,7 @@ public class EstacionBean {
 	}
 
 	 public String vista_modificar(Long id_estacion){
-		 borrarCampos();
+		 this.message = null;
 		 EstacionDAO estaDAO = this.factory.getEstacionDAO();
 		 this.estacion = estaDAO.recuperar(id_estacion);
 		 this.ubicacion=this.estacion.getUbicacionEstacion();
