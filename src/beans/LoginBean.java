@@ -30,6 +30,7 @@ public class LoginBean {
    	}
 	
     public String login(){
+
     	
     	UsuarioDAO userdao = factory.getUsuarioDAO();
     	Usuario user = userdao.autenticacion(email, password);
