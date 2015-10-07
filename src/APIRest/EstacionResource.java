@@ -1,5 +1,6 @@
 package APIRest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -30,8 +31,13 @@ public class EstacionResource {
 		@GET
 		@Path("/listado")
 		@Produces({ MediaType.APPLICATION_JSON })
-		public List<Estacion> getEstaciones() {
-			return estacionService.getEstacionesAsList();
+		public List<EstacionAPI> getEstaciones() {
+			List<EstacionAPI> result = new ArrayList<EstacionAPI>();
+			List<Estacion> lista = estacionService.getEstacionesAsList();
+			for (Estacion e : lista) {
+				result.add(new EstacionAPI(e.getNombre(),e.getEstacionamientosLibres(),e.getCapacidad(),e.getUbicacionEstacion(),e.getEstadoEstacion()));
+			}
+			return result;
 		}
 
 }

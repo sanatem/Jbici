@@ -70,7 +70,7 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		// TODO Auto-generated method stub
 		return super.recuperar(id);
 	}
-
+	
 	@Override
 	public List<Estacion> getAllEstaciones() {
 		EntityManager em = this.emf.createEntityManager();
@@ -84,6 +84,7 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		return result;
 	}
 	
+
 	@Override
 	public List<Estacion> getAllEstacionesActivas(){
 		EntityManager em = this.emf.createEntityManager();

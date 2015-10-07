@@ -26,6 +26,7 @@ public interface EstacionDAO extends GenericDAO<Estacion> {
 	public boolean existeConNombre(String nombre);
 	
 	public List<Estacion> getAllEstaciones();
+
 	public List<Estacion> getAllEstacionesActivas();
 	
 	public List<Bicicleta> recuperarBicicletasDisponibles(Long estacion_id);
