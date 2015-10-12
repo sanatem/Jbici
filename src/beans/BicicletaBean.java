@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -17,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import model.Bicicleta;
 import model.Estacion;
 import model.EstadoBicicleta;
+import model.HistorialBicicleta;
 
 @ManagedBean(name="bicicletaBean")
 @SessionScoped
@@ -32,6 +34,8 @@ public class BicicletaBean {
 	
 	private Long estado_bici;
 	
+	private List<HistorialBicicleta> historial;
+	
 	private ArrayList<Estacion> estaciones = getAllEstaciones();
 	
 	private ArrayList<Bicicleta> bicicletas = getAllBicicletas();
@@ -46,6 +50,10 @@ public class BicicletaBean {
     	return "alta_bici";
     }
     
+
+
+
+
 
 
 	public String modificarForm(Long id_bici){
@@ -105,6 +113,7 @@ public class BicicletaBean {
         	Date fecha = formatDate();
         	Bicicleta bicicleta = new Bicicleta(fecha,estado,estacion);	
         	bicicleta = bicidao.persistir(bicicleta);
+        	bicicleta.setEstadoActual(estado); //Creamos log para el historial.
         	this.message="<div class='alert alert-success'>Bicicleta creada exitósamente! con ID: #"+bicicleta.getId()+"</div>";
         }
         else{
@@ -145,6 +154,22 @@ public class BicicletaBean {
 		return "administrar_bicicletas";
 	}
 	
+	public List<HistorialBicicleta> getAllHistorial(Long id_bici) {
+		BicicletaDAO bicidao = factory.getBicicletaDAO();
+		Bicicleta bici = bicidao.recuperar(id_bici);
+		
+		return bici.getHistorial();
+	}
+	
+	public String verHistorial(Long id_bici){
+		this.historial = getAllHistorial(id_bici);
+		return "historial_bicicleta";
+	}
+	
+	public List<HistorialBicicleta> getHistorial(){
+		return this.historial;
+	}
+	
 	
 	/* Getters y setters */
     
@@ -173,7 +198,9 @@ public class BicicletaBean {
 	}
 
 	public ArrayList<Estacion> getEstaciones() {
-		return estaciones;
+        EstacionDAO estaciondao = factory.getEstacionDAO();
+        this.estaciones = (ArrayList<Estacion>) estaciondao.getAllEstaciones();
+        return estaciones;
 	}
 
 	public void setEstaciones(ArrayList<Estacion> estaciones) {

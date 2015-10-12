@@ -20,7 +20,7 @@ public class HistorialBicicleta implements aspects.LogInterface{
 
 	private Timestamp fecha;
 	
-	@OneToOne(optional=false)
+	@OneToOne
 	private EstadoBicicleta estado;
 	
 	public HistorialBicicleta(Timestamp time, EstadoBicicleta estado){

@@ -11,6 +11,7 @@ import interfacesDAO.BicicletaDAO;
 import interfacesDAO.ClienteDAO;
 import interfacesDAO.DenunciaDAO;
 import interfacesDAO.EstacionDAO;
+import interfacesDAO.EstadoBicicletaDAO;
 import interfacesDAO.FactoryDAO;
 import interfacesDAO.UsuarioDAO;
 
@@ -118,17 +119,25 @@ public class AlquilerBean {
 	}
 	
 	public String denunciarBicicleta(){
-		DenunciaDAO denunciadao = factory.getDenunciaDAO();
 		AlquilerDAO alquilerdao = factory.getAlquilerDAO();
-		Denuncia denuncia = new Denuncia();
-		Timestamp today = new Timestamp(new Date().getTime());
-		denuncia.setDescripcion(this.motivoDenuncia);
-		denuncia.setFecha_denuncia(today);
-		denunciadao.persistir(denuncia);
 		Alquiler alquiler = alquilerdao.recuperar(this.getId_alquiler());
 		if(alquiler.getDenuncia()==null){
+			//Creamos la denuncia.
+			DenunciaDAO denunciadao = factory.getDenunciaDAO();
+			Denuncia denuncia = new Denuncia();
+			Timestamp today = new Timestamp(new Date().getTime());
+			denuncia.setDescripcion(this.motivoDenuncia);
+			denuncia.setFecha_denuncia(today);
+			denunciadao.persistir(denuncia);
+			//Agregamos Denuncia al alquiler.
 			alquiler.setDenuncia(denuncia);
 			alquilerdao.actualizar(alquiler);
+			//Cambiamos el estado de la bici
+			BicicletaDAO bicidao = factory.getBicicletaDAO();
+			Bicicleta bici_mod = alquiler.getBicicleta();
+			EstadoBicicletaDAO estadodao = factory.getEstadoBicicletaDAO();
+			bici_mod.setEstadoActual(estadodao.recuperar(new Long(4))); //Estado denunciado.
+			bicidao.actualizar(bici_mod);
 			this.message= "<div class='alert alert-success'>Denuncia efectuada exitosamente!</div>";
 		}
 		else{

@@ -54,7 +54,7 @@
 								pt:placeholder="DNI"
 								required="true"
 								validatorMessage="El DNI es incorrecto">
-								<f:validateRegex pattern="[0-9])*$/"/>
+								<f:convertNumber integerOnly="true"/>
 						</h:inputText>
 						<h:message for="dni" />
 					    </div>

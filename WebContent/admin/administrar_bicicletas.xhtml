@@ -64,7 +64,12 @@
 		                            	value="Eliminar" 
 		                            	id="eliminar_btn" 
 		                            	actionListener="#{bicicletaBean.eliminarBicicleta(b.idBicicleta)}"
-		                            	styleClass="btn btn-danger btn-md"/>	                            			    				
+		                            	styleClass="btn btn-danger btn-md"/>
+		                         	<h:commandButton 
+		                            	value="Ver Historial" 
+		                            	id="historial_btn" 
+		                            	action="#{bicicletaBean.verHistorial(b.idBicicleta)}"
+		                            	styleClass="btn btn-warning btn-md"/>	                            			    				
 		    					</h:form>
 		    			</h:column>
       

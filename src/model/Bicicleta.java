@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +39,7 @@ public class Bicicleta implements aspects.LogInterface{
 	@JoinColumn(name="estacion_id")
 	private Estacion estacionActual;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="bicicleta_id")	
 	private List<HistorialBicicleta> historialEstados;
 	
