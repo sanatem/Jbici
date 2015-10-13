@@ -44,6 +44,8 @@ public class RegistroBean {
         boolean existe = clientedao.existeConEmail(this.email);
         
         if(! existe){
+        //	mailContrasena env = new mailContrasena();
+        //	env.enviarMail();
             //Si no existe
             this.password="1234";
             Cliente user = new Cliente(nombre, apellido, dni, domicilio,sexo, fecha,
@@ -51,6 +53,7 @@ public class RegistroBean {
         	clientedao.persistir(user);
         	LoginBean bean = new LoginBean(this.email,this.password,
         			"Su clave por defecto es: 1234, para cambiarla acceda a Modificar datos");
+    
         	return bean.login();
         }
         else{
@@ -59,6 +62,7 @@ public class RegistroBean {
         }
 
     }
+    
 
 	public FactoryDAO getFactory() {
 		return factory;

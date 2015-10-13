@@ -23,8 +23,8 @@ public class Estacion implements aspects.LogInterface {
 	private Long idEstacion;
 	
 	private String nombre;
-	private int estacionamientosLibres;
-	private int capacidad;
+	private Integer estacionamientosLibres;
+	private Integer capacidad;
 	
 	@OneToMany(mappedBy="estacionActual",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<Bicicleta> bicicletas;
@@ -66,10 +66,10 @@ public class Estacion implements aspects.LogInterface {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getEstacionamientosLibres() {
+	public Integer getEstacionamientosLibres() {
 		return estacionamientosLibres;
 	}
-	public void setEstacionamientosLibres(int estacionamientosLibres) {
+	public void setEstacionamientosLibres(Integer estacionamientosLibres) {
 		this.estacionamientosLibres = estacionamientosLibres;
 	}
 	public List<Bicicleta> getBicicletas() {
@@ -103,11 +103,11 @@ public class Estacion implements aspects.LogInterface {
 		return getIdEstacion();
 	}
 
-	public int getCapacidad() {
+	public Integer getCapacidad() {
 		return capacidad;
 	}
 
-	public void setCapacidad(int capacidad) {
+	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
 	
