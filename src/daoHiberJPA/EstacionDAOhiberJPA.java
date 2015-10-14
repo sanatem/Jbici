@@ -84,6 +84,24 @@ public class EstacionDAOhiberJPA extends GenericDAOhiberJPA<Estacion> implements
 		return result;
 	}
 	
+	@Override
+	public boolean existeNombreId(String nombre,Serializable id){
+		EntityManager em = this.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		List<Cliente> result = null;
+		etx.begin();
+			Query q = em.createQuery("FROM Estacion e WHERE e.nombre = :nom and e.id != :id_e");
+			q.setParameter("nom", nombre);
+			q.setParameter("id_e", id);
+			result = q.getResultList();
+			etx.commit();
+			if(result.isEmpty()){
+				return false;
+			}
+			return true;
+		
+	}
+	
 
 	@Override
 	public List<Estacion> getAllEstacionesActivas(){

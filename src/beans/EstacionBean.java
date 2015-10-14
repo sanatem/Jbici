@@ -63,10 +63,15 @@ public class EstacionBean {
 		UbicacionDAO ubidao = this.factory.getUbicacionDAO();
 		EstacionDAO estacionDAO = this.factory.getEstacionDAO();
 		EstadoEstacionDAO estadao = this.factory.getEstadoEstacion();
-		this.estacion.setEstadoEstacion(estadao.recuperar(new Long(this.estado_estacion)));
-		estacionDAO.actualizar(this.estacion);	
-		ubidao.actualizar(this.estacion.getUbicacionEstacion());
-		return "administrar_estaciones";
+		if(!estacionDAO.existeNombreId(this.estacion.getNombre(),this.estacion.getId())){
+			this.estacion.setEstadoEstacion(estadao.recuperar(new Long(this.estado_estacion)));
+			estacionDAO.actualizar(this.estacion);	
+			ubidao.actualizar(this.estacion.getUbicacionEstacion());
+			return "administrar_estaciones";
+		}else{
+			this.message="<div class='alert alert-danger' role='alert'>Ya existe una estacion con ese nombre</div>";
+			return "mod_estacion";
+		}
 
 	}
 
