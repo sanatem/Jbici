@@ -39,8 +39,7 @@
 			};
 			
 			var mapa = new google.maps.Map($("#mapa")[0], config);
-
-			$.getJSON("http://localhost:8080/Jbici/rest/estaciones/listado",
+			$.getJSON("http://java2015.linti.unlp.edu.ar/jyaaGrupo8/rest/estaciones/listado",
 			        function(data){
 						var infowindow = new google.maps.InfoWindow();
 						for (var e in data)
