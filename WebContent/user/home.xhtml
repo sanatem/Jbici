@@ -62,13 +62,17 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>                
-                							<li class="dropdown">
+                	<li class="dropdown">
 			              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 			              <span class="glyphicon glyphicon-user"></span>Mi cuenta 
                             <span class="caret"></span></a>
 			              <ul class="dropdown-menu" role="menu">
 			                <li><a href="modificar_datos.xhtml">
 			                	<span class="glyphicon glyphicon-cog"></span>Modificar mis datos
+			                	</a>
+			                </li>
+			                <li><a href="cambiar_clave.xhtml">
+			                	<span class="glyphicon glyphicon-flag"></span>Cambiar Contraseña
 			                	</a>
 			                </li>
 			                <li>
@@ -91,8 +95,9 @@
     <ui:insert name="content">
      <div class="jumbotron other-color">
       <div class="container">
+      	#{userBean.clearBean}
         <h1>Bienvenido #{userBean.nombre}! </h1>
-        <p>Su clave por defecto es: '1234', para cambiarla acceda a Modificar datos </p>
+        <p><b>Su clave por defecto es: '1234', para cambiarla acceda a Cambiar contraseña</b> </p>
         <p>
         El ciclismo urbano es toda una tendencia en la actualidad, pues no solo ofrece múltiples ventajas para la salud, sino 
         también, es un noble medio de transporte que permite ahorrar dinero y cuidar el medio ambiente.   Además,   los   sistemas   de   bicicleta   pública   cobran  

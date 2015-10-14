@@ -11,5 +11,7 @@ public interface UsuarioDAO extends GenericDAO<Usuario> {
 
 	public List<Usuario> getAllUsers();
 	
+	public boolean verificarMail(String email,Long Id);
+	
 	
 }

@@ -32,7 +32,21 @@ public class UsuarioDAOhiberJPA extends GenericDAOhiberJPA<Usuario> implements U
 	}
 
 
-
+	public boolean verificarMail(String email, Long Id) {
+		EntityManager em = this.emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		List<Usuario> result = null;
+		etx.begin();
+			Query q = em.createQuery("FROM Usuario u WHERE u.email = :email and u.id != :id ");
+			q.setParameter("email", email);
+			q.setParameter("id", Id);
+			result = q.getResultList();
+		etx.commit();
+		if (result.isEmpty()){
+			return false;
+		}
+		return true; //Habia un usuario con ese mail y no puedes repetirlo.
+	}
 	
 	public Usuario autenticacion(String email,String password){
 		EntityManager em = this.emf.createEntityManager();

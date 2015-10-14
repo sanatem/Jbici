@@ -20,6 +20,8 @@ public class UsuarioBean {
 	public Usuario user;
 	public String message;
 	private String pass_verify;
+	private String new_pass;
+	private String new_pass_repeat;
 	
 	public UsuarioBean(){	
 		super();
@@ -41,14 +43,33 @@ public class UsuarioBean {
 	public String actualizar(){
 		UsuarioDAO userdao = factory.getUsuarioDAO();
 		if(user.getPassword().equals(getPass_verify())){
-			userdao.actualizar(user);
-			this.message="<div class='alert alert-success' role='alert'>Datos actualizados!</div>";
+			if(userdao.verificarMail(user.getEmail(), user.getId()) ){
+				this.message="<div class='alert alert-danger' role='alert'>No puedes ingresar el email de otro usuario!</div>";
+			}
+			else{
+				userdao.actualizar(user);
+				this.message="<div class='alert alert-success' role='alert'>Datos actualizados!</div>";
+			}
 		}
 		else{
-			this.message="<div class='alert alert-danger' role='alert'>No pueden actualizarse los datos, contraseña erronea</div>";
+			this.message="<div class='alert alert-danger' role='alert'>No pueden actualizarse los datos, ingrese su contraseña para efectuar cambios</div>";
 		}
 
 		return "modificar_datos";
+	}
+	
+	
+	public String cambiarPassword(){
+		UsuarioDAO userdao = factory.getUsuarioDAO();
+		if(user.getPassword().equals(getPass_verify()) && getNew_pass().equals(getNew_pass_repeat()) ){
+			user.setPassword(this.getNew_pass());
+			userdao.actualizar(user);
+			this.message="<div class='alert alert-success' role='alert'>Contraseña actualizada!</div>";
+		}
+		else{
+			this.message="<div class='alert alert-danger' role='alert'>Contraseña actual invalida o clave nueva incorrecta!</div>";
+		}
+		return "cambiar_clave";
 	}
 	
 	
@@ -143,7 +164,26 @@ public class UsuarioBean {
 	public void setPass_verify(String pass_verify) {
 		this.pass_verify = pass_verify;
 	}
+
+	public String getNew_pass() {
+		return new_pass;
+	}
+
+	public void setNew_pass(String new_pass) {
+		this.new_pass = new_pass;
+	}
+
+	public String getNew_pass_repeat() {
+		return new_pass_repeat;
+	}
+
+	public void setNew_pass_repeat(String new_pass_repeat) {
+		this.new_pass_repeat = new_pass_repeat;
+	}
 	
-	
+	public String getClearBean(){
+		this.message="";
+		return message;
+	}
 	
 }
