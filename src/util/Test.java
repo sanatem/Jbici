@@ -91,8 +91,6 @@ public class Test {
 		id = cliente.getIdUsuario();
 		Long id_alqui_usuario = alquiler.getCliente().getIdUsuario();
 		System.out.println(" - Lado Alquiler, traemos su cliente con id cliente="+id_alqui_usuario);
-		ArrayList<Alquiler> resul = new ArrayList<Alquiler>(alquilerdao.recuperarAlquileresPorCliente(cliente.getIdUsuario())); //Recibe un id de cliente
-		System.out.println(" - Lado cliente, recuperamos alquileres, el primero con id="+resul.get(0).getAlquilerId());
 		 
 		System.out.println("--Test recuperar");
 		Cliente cliente_recuperado = clientedao.recuperar(id);

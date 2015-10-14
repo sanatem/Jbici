@@ -52,7 +52,9 @@
 								class="form-control" 
 								id="dni"
 								pt:placeholder="DNI"
-								required="true">
+								required="true"
+								validatorMessage="El DNI es incorrecto">
+								<f:convertNumber integerOnly="true"/>
 						</h:inputText>
 					    </div>
 					  </div>

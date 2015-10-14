@@ -80,8 +80,11 @@
 										Administrar Bicicletas
 									</h:outputLink>
 								</li>
-								<li><a href="#">Historial
-										de Uso</a></li>
+								<li>
+									<h:outputLink value="stats_bicicletas.xhtml" >
+										Informacion estadística
+									</h:outputLink>										
+								</li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
@@ -94,7 +97,7 @@
 								</li>
 								<li>
 									<h:outputLink value="info_estadistica.xhtml" >
-										Informacion estadistica
+										Informacion estadística
 									</h:outputLink>										
 								</li>
 							</ul></li>
@@ -131,9 +134,13 @@
 		<ui:insert name="content">
 			<div class="jumbotron other-color">
 				<div class="container">
-					<h1>Admin view</h1>
-					<p>Aqui se podra acceder a todas las posibilidades que tenga un
-						admin del sistema !!
+					<h2>Bienvenido #{userBean.user.nombre} !</h2>
+					<br/>
+					<p> Como administrador del Sistema usted podrá: <br/>
+					 	- Administrar las estaciones. <br/>
+					 	- Administrar las bicicletas. <br/>
+					 	- Habilitar/Deshabilitar usuarios. <br/>
+					 	- Obtener información estadística. <br/>
 					</p>
 				</div>
 			</div>

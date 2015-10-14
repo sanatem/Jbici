@@ -39,8 +39,6 @@ public class BicicletaDAOhiberJPA extends GenericDAOhiberJPA<Bicicleta> implemen
 
 
 
-
-
 	@Override
 	public List<Bicicleta> getAllBicicletas() {
 		EntityManager em = this.emf.createEntityManager();

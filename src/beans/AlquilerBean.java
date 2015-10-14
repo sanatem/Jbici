@@ -9,7 +9,9 @@ import java.util.List;
 import interfacesDAO.AlquilerDAO;
 import interfacesDAO.BicicletaDAO;
 import interfacesDAO.ClienteDAO;
+import interfacesDAO.DenunciaDAO;
 import interfacesDAO.EstacionDAO;
+import interfacesDAO.EstadoBicicletaDAO;
 import interfacesDAO.FactoryDAO;
 import interfacesDAO.UsuarioDAO;
 
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import model.Alquiler;
 import model.Bicicleta;
 import model.Cliente;
+import model.Denuncia;
 import model.Estacion;
 import model.Usuario;
 
@@ -35,7 +38,7 @@ public class AlquilerBean {
 	
 	private Long estacion_devuelve;
 	
-
+	private String motivoDenuncia;
 
 	private Usuario user;
 	
@@ -108,11 +111,47 @@ public class AlquilerBean {
 		return "retirar_bicileta";
 	}
 	
+
+	public String denunciarForm(Long id_alqui){
+		setId_alquiler(id_alqui);
+		return "denunciar_bicicleta";
+				
+	}
+	
+	public String denunciarBicicleta(){
+		AlquilerDAO alquilerdao = factory.getAlquilerDAO();
+		Alquiler alquiler = alquilerdao.recuperar(this.getId_alquiler());
+		if(alquiler.getDenuncia()==null){
+			//Creamos la denuncia.
+			DenunciaDAO denunciadao = factory.getDenunciaDAO();
+			Denuncia denuncia = new Denuncia();
+			Timestamp today = new Timestamp(new Date().getTime());
+			denuncia.setDescripcion(this.motivoDenuncia);
+			denuncia.setFecha_denuncia(today);
+			denunciadao.persistir(denuncia);
+			//Agregamos Denuncia al alquiler.
+			alquiler.setDenuncia(denuncia);
+			alquilerdao.actualizar(alquiler);
+			//Cambiamos el estado de la bici
+			BicicletaDAO bicidao = factory.getBicicletaDAO();
+			Bicicleta bici_mod = alquiler.getBicicleta();
+			EstadoBicicletaDAO estadodao = factory.getEstadoBicicletaDAO();
+			bici_mod.setEstadoActual(estadodao.recuperar(new Long(4))); //Estado denunciado.
+			bicidao.actualizar(bici_mod);
+			this.message= "<div class='alert alert-success'>Denuncia efectuada exitosamente!</div>";
+		}
+		else{
+			this.message= "<div class='alert alert-danger'>No puedes efectuar otra denuncia sobre este alquiler!</div>";
+		}
+		
+		return "denunciar_bicicleta";
+				
+	}
+
 	public String devolverForm(Long id_alqui){
 		setId_alquiler(id_alqui);
 		return "devolver_bicicleta";
-		
-		
+			
 	}
 	
 	public String devolverBicicleta(){
@@ -215,6 +254,14 @@ public class AlquilerBean {
 
 	public void setEstacion_devuelve(Long estacion_devuelve) {
 		this.estacion_devuelve = estacion_devuelve;
+	}
+
+	public String getMotivoDenuncia() {
+		return motivoDenuncia;
+	}
+
+	public void setMotivoDenuncia(String motivoDenuncia) {
+		this.motivoDenuncia = motivoDenuncia;
 	}
 	
 }

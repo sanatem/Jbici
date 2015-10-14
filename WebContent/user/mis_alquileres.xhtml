@@ -8,7 +8,7 @@
 
 <ui:composition template="home.xhtml">
 	<ui:define name="title">
-   		Retirar Bicicleta
+   		Mis Alquileres
    </ui:define>
    <ui:define name="home_styles">
    		<!-- Data tables-->
@@ -65,7 +65,7 @@
 		                            <h:commandButton 
 		                            	value="Denunciar" 
 		                            	id="eliminar_btn" 
-		                            	actionListener="#{alquilerBean.denunciar(a.id)}"
+		                            	action="#{alquilerBean.denunciarForm(a.id)}"
 		                            	styleClass="btn btn-danger btn-md"/>	                            			    				
 		    					</h:form>
 		    			</h:column>		    						    					    			

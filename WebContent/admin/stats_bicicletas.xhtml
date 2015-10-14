@@ -6,14 +6,23 @@
 
 <ui:composition template="admin.xhtml">
 	<ui:define name="title">
-			Administrar Usuarios - Administrador
+			Estadistica de estaciones - Administrador
+	</ui:define>
+
+	<ui:define name="admin_styles">
+		<!-- Data tables-->
+		<link rel="stylesheet" type="text/css"
+			href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css"/>
+		<script type="text/javascript" charset="utf8"
+			src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js">
+    	</script>
 	</ui:define>
 
 	<ui:define name="content">
 		<div class="container">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<h2 class="form-signin-heading">Informacion estadistica de Usuarios</h2>
+					<h2 class="form-signin-heading">Informacion estadistica de Bicicletas</h2>
 				</div>
 				<div class="panel-body">
 						<script src="http://code.jquery.com/jquery-1.4.2.min.js" type="text/javascript"></script>
@@ -33,7 +42,7 @@
 							// draws it.
 							function drawChart() {
 					
-								var url = "http://localhost:8080/Jbici/rest/stats/Cliente"; // Completar con URL del servicio REST
+								var url = "http://localhost:8080/Jbici/rest/stats/Bicicleta"; // Completar con URL del servicio REST
 								$.getJSON(url, function(data){
 					
 								var googleData = new google.visualization.DataTable();
@@ -48,7 +57,7 @@
 								}
 								
 								var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-								chart.draw(googleData, {width: 450, height: 300, title: 'Operaciones sobre Entidad Usuario', is3D: true});
+								chart.draw(googleData, {width: 450, height: 300, title: 'Operaciones sobre Entidad Bicicleta', is3D: true});
 							});
 							}
 							//]]>
@@ -65,4 +74,4 @@
 
 </ui:composition>
 
-</html>
+</html>	
