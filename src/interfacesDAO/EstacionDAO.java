@@ -30,5 +30,7 @@ public interface EstacionDAO extends GenericDAO<Estacion> {
 	public List<Estacion> getAllEstacionesActivas();
 	
 	public List<Bicicleta> recuperarBicicletasDisponibles(Long estacion_id);
+	
+	public boolean existeNombreId(String nombre, Serializable id);
 
 }

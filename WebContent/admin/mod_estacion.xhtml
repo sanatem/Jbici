@@ -44,6 +44,7 @@
 								class="form-control" id="nombre_esta"
 								pt:placeholder="Nombre"
 								required="true" />
+					      <h:message for="nombre_esta" style="color:red" />
 					    </div>
 					  </div>
 					  <div class="form-group">
@@ -53,8 +54,12 @@
 								value="#{EstacionBean.cant_bicis}"
 								class="form-control" id="cant_bicis"
 								pt:placeholder="Cantidad"
-								required="true" />
-					    </div>
+								required="true" 
+					    		validatorMessage="El valor ingresado es incorrecto">
+								<f:convertNumber integerOnly="true"/>
+						  </h:inputText>
+						  <h:message for="cant_bicis" style="color:red" />
+					  </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="codpostal" class="col-lg-2 control-label">Direccion postal</label>
@@ -64,6 +69,7 @@
 								class="form-control" id="codpostal"
 								pt:placeholder="Direccion Postal"
 								required="true" />
+						  <h:message for="codpostal" style="color:red" />	  						  
 					    </div>
 					  </div>
 					      <h:inputHidden 
@@ -73,7 +79,8 @@
 					      <h:inputHidden
 								value="#{EstacionBean.latitud}"
 								name="cy"
-								id="lat"/>
+								id="lat"
+								required="true"/>
 					    <div class="form-group">
 					    <label for="estado_estacion" class="col-lg-2 control-label">Estado</label>
 					    <div class="col-lg-10">
@@ -92,6 +99,7 @@
 					     	<div id="mapa">
         						<h2>Aquí irá el mapa!</h2>
     						</div>
+    						<h:message for="lat" style="color:red" />	  		
 					    </div>
 					  </div>  
 					  <div class="form-group">
