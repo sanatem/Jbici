@@ -264,4 +264,9 @@ public class AlquilerBean {
 		this.motivoDenuncia = motivoDenuncia;
 	}
 	
+	public String getClearBean(){
+		this.message="";
+		return message;
+	}
+	
 }
