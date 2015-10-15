@@ -52,10 +52,6 @@ public class BicicletaBean {
     
 
 
-
-
-
-
 	public String modificarForm(Long id_bici){
 		this.idBicicleta=id_bici;
 		BicicletaDAO bicidao = factory.getBicicletaDAO();
@@ -114,10 +110,10 @@ public class BicicletaBean {
         	Bicicleta bicicleta = new Bicicleta(fecha,estado,estacion);	
         	bicicleta = bicidao.persistir(bicicleta);
         	bicicleta.setEstadoActual(estado); //Creamos log para el historial.
-        	this.message="<div class='alert alert-success'>Bicicleta creada exitï¿½samente! con ID: #"+bicicleta.getId()+"</div>";
+        	this.message="<div class='alert alert-success'>Bicicleta creada exitósamente! con ID: #"+bicicleta.getId()+"</div>";
         }
         else{
-        	this.message="<div class='alert alert-danger'>Error:La estaciï¿½n no posee lugares disponibles para ingresar nuevas bicicletas</div>";
+        	this.message="<div class='alert alert-danger'>Error:La estación no posee lugares disponibles para ingresar nuevas bicicletas</div>";
         }
         
 		clearBean();
@@ -266,6 +262,11 @@ public class BicicletaBean {
 		String reportDate = df.format(fecha);
 		
 		return reportDate;
+	}
+	
+	public String getClearMessage(){
+		this.message="";
+		return message;
 	}
 	
 	

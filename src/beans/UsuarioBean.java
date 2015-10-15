@@ -22,7 +22,7 @@ public class UsuarioBean {
 	private String pass_verify;
 	private String new_pass;
 	private String new_pass_repeat;
-	
+
 	public UsuarioBean(){	
 		super();
 		HttpSession session = (HttpSession)

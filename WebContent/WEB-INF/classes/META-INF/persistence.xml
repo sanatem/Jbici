@@ -35,6 +35,10 @@
 			-->
 
 			<!-- DEV PARAMS --> 
+			
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jbici_db" />
 	        
 	        <!-- Para habilitar la creacion de la base -->
 			
